@@ -25,7 +25,7 @@ class CSynapse
 
     /* Fetches the information from a specific user from the db */
     private function populate ( ){
-        $url = "https://csynapse.com/app/check?id=" . $this->id;
+        $url = "localhost:8888/app/check?id=" . $this->id;
         $json = file_get_contents($url);
         $allobj = json_decode($json);
 
