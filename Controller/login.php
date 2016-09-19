@@ -10,11 +10,11 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     curl_setopt($ch, CURLOPT_POST, true);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
-    $regex = "^(?<domain>.*?)?(?<flag>.*?)?(?<path>.*?)?(?<secure>.*?)?(?<expiration>.*?)?(?<name>.*?)?(?<value>.*?)$";
-    $cookie = preg_split($regex,$str,-1,PREG_SPLIT_DELIM_CAPTURE);
+    $regex = "^(?<domain>.*?)\t(?<flag>.*?)\t(?<path>.*?)\t(?<secure>.*?)\t(?<expiration>.*?)\t(?<name>.*?)\t(?<value>.*?)$";
+    $cookie = preg_split($regex,$str,$matches,PREG_SPLIT_DELIM_CAPTURE);
     session_start();
     echo("<br />");
-    echo($cookie("value"));
+    echo($matches);
     echo("<br />");
     curl_close($ch);
     #$allobj = json_decode($json);
