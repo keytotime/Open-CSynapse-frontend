@@ -14,6 +14,7 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     $matches = explode("\t", $matches[0]);
     session_start();
     $_SESSION['id'] = $matches["beaker.session.id"];
+    echo($matches["beaker.session.id"]);
     echo("<br />");
     echo($_SESSION['id']);
     echo("<br />");
