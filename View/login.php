@@ -42,7 +42,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="/login" method="POST" enctype="multipart/form-data">
+                        <form action="api/login" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="User Name" name="username" autofocus>
