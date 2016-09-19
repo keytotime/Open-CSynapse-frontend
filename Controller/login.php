@@ -10,11 +10,11 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     curl_setopt($ch, CURLOPT_POST, true);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
-    $regex = "/.*beaker.session.id (?P<value>\d+)/";
+    $regex = "/.*id (?P<value>\d+)/";
     preg_split($regex,$str,$matches,PREG_SPLIT_DELIM_CAPTURE);
     session_start();
     echo("<br />");
-    echo($matches);
+    var_dump($matches);
     echo("<br />");
     curl_close($ch);
     #$allobj = json_decode($json);
