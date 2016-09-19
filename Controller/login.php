@@ -1,7 +1,8 @@
 <?php
 
+session_start();
+
 if (isset($_POST['username']) && isset($_POST['password'])){
-    echo("variables set<br><br>");
     $url = "http://api:8888/login?username=" . $_POST['username'] . "&password=" . $_POST['password'];
     $ch = curl_init($url);
     $cookie_file = tempnam("/tmp", "user_cookie");
@@ -13,16 +14,13 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     $matches = explode(' ', $cookie_list[0]);
     $matches = explode("\t", $matches[0]);
     session_start();
-    $_SESSION['id'] = $matches["beaker.session.id"];
-    echo($matches[6]);
-    echo("<br />");
+    $_SESSION['id'] = $matches[6];
     echo($_SESSION['id']);
-    echo("<br />");
     curl_close($ch);
-    #$allobj = json_decode($json);
-    #set cookie on user's side
-    #var_dump($allobj);
-    echo("<br><br>extraction finished");
+}
+
+if(isset($_SESSION['id']){
+    header("Location: /index.php");
 }
 
 else{
