@@ -13,8 +13,9 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     $matches = explode(' ', $cookie_list[0]);
     $matches = explode("\t", $matches[0]);
     session_start();
+    $_SESSION
     echo("<br />");
-    var_dump($matches);
+    echo($matches["beaker.session.id"]);
     echo("<br />");
     curl_close($ch);
     #$allobj = json_decode($json);
