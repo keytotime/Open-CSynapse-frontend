@@ -10,10 +10,11 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     curl_setopt($ch, CURLOPT_POST, true);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
+    $regest = "^(?<domain>.*?)\t(?<flag>.*?)\t(?<path>.*?)\t(?<secure>.*?)\t(?<expiration>.*?)\t(?<name>.*?)\t(?<value>.*?)$";
+    $cookie = preg_split($regex,$str,-1,PREG_SPLIT_DELIM_CAPTURE);
     session_start();
-    var_dump($cookie_list["beaker.session.id"]);
     echo("<br />");
-    var_dump($cookie_list[0][3]);
+    echo($cookie("value"));
     echo("<br />");
     curl_close($ch);
     #$allobj = json_decode($json);
