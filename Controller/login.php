@@ -11,6 +11,8 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
     session_start();
+    echo[$cookie_list[0];
+    echo("<br />");
     echo[$cookie_list[0][1]];
     echo("<br />");
     curl_close($ch);
