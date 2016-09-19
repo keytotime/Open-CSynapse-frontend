@@ -7,6 +7,7 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     $allobj = json_decode($json);
     echo($json);
     echo($allobj);
+    echo("extraction finished");
 }
 
 else{
