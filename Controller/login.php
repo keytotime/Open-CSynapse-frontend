@@ -10,7 +10,7 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     curl_setopt($ch, CURLOPT_POST, true);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
-    $regex = "/.*id (?P<value>\d+)/";
+    $regex = "/.*id (?P<value>\w+)/";
     preg_split($regex,$str,$matches,PREG_SPLIT_DELIM_CAPTURE);
     session_start();
     echo("<br />");
