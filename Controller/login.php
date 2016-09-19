@@ -10,11 +10,11 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     curl_setopt($ch, CURLOPT_POST, true);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
-    var_dump($cookie_list);
+    session_start();
+    echo[$cookie_list[0][1]];
     echo("<br />");
     curl_close($ch);
     #$allobj = json_decode($json);
-    var_dump($data);
     #set cookie on user's side
     #var_dump($allobj);
     echo("<br><br>extraction finished");
