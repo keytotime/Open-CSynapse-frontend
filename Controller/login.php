@@ -11,6 +11,7 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
     $matches = explode(' ', $cookie_list[0]);
+    $matches = explode(' ', $matches);
     session_start();
     echo("<br />");
     var_dump($matches);
