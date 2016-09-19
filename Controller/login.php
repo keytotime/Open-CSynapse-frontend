@@ -13,7 +13,7 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     session_start();
     var_dump($cookie_list["beaker.session.id"]);
     echo("<br />");
-    var_dump($cookie_list[0]);
+    var_dump($cookie_list[0][3]);
     echo("<br />");
     curl_close($ch);
     #$allobj = json_decode($json);
