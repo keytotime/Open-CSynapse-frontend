@@ -10,8 +10,7 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     curl_setopt($ch, CURLOPT_POST, true);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
-    $regex = "^(?<domain>.*?)/t(?<flag>.*?)/t(?<path>.*?)/t(?<secure>.*?)/t(?<expiration>.*?)/t(?<name>.*?)/t(?<value>.*?)$";
-    preg_split($regex,$str,$matches,PREG_SPLIT_DELIM_CAPTURE);
+    $matches = explode(' ', $cookie_list[0]);
     session_start();
     echo("<br />");
     var_dump($matches);
