@@ -14,11 +14,10 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     $matches = explode(' ', $cookie_list[0]);
     $matches = explode("\t", $matches[0]);
     $_SESSION['id'] = $matches[6];
-    echo($_SESSION['id']);
     curl_close($ch);
 }
 
-if(isset($_SESSION['id']){
+if(isset($_SESSION['id'])){
     header("Location: /index.php");
 }
 
