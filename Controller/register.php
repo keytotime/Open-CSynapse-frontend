@@ -1,5 +1,5 @@
 <?php
 
-require '../view/register.php';
+require '../View/register.php';
 
 ?>

@@ -1,5 +1,5 @@
 <?php
 
-require '../view/login.php';
+require '../View/login.php';
 
 ?>
