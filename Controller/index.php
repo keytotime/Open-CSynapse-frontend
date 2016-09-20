@@ -21,13 +21,12 @@ $url = $api_url . "/csynapses?user=Nick";
 $opts = array(
   'http'=>array(
     'method'=>"GET",
-    'header'=>
-              "Cookie: beaker.session.id=" . $_SESSION['id'] . "\r\n"
+    'header'=>"Cookie: beaker.session.id=" . $_SESSION['id'] . ";"
   )
 );
 $context = stream_context_create($opts);
 echo("<br><br>");
-var_dump($opts);
+var_dump($context);
 echo("<br><br>");
 $contents = file_get_contents($url, false, $context);
 

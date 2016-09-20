@@ -11,7 +11,7 @@ require '../Model/hidden/api.php';
 
 $csynapse = $_GET['id'];
 
-$url = "http://" . $api_url . "/testResults?user=sam&name=" . $csynapse;
+$url = $api_url . "/testResults?user=sam&name=" . $csynapse;
 $json = file_get_contents($url);
 $allobj = json_decode($json);
 
