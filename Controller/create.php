@@ -9,11 +9,11 @@ CSynapse
 require '../Model/hidden/api.php';
 
 if(isset($_POST['description'])){
-	$url = "http://" . $api_url . "/create?user=sam&name=" . $_POST['description'];
+	$url = $api_url . "/create?user=" . $_SESSION['user'] . "&name=" . $_POST['description'];
 	$json = file_get_contents($url);
 	$allobj = json_decode($json);
 
-	var_dump($allobj);
+	//var_dump($allobj);
 
 }
 

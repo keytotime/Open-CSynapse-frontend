@@ -11,14 +11,19 @@ require '../Model/hidden/api.php';
 
 session_start();
 
+echo($_SESSION['id']);
+echo($_SESSION['user']);
+
 $table = '';
 
-$url = $api_url . "/csynapses?user=sam";
+$url = $api_url . "/csynapses?user=Nick";
+
+$opts = array('https' => array('header'=> 'Cookie: beaker.session.id=' . $_SESSION['id']."\r\n"));
+$context = stream_context_create($opts);
+$contents = file_get_contents($url, false, $context);
+
 $json = file_get_contents($url);
 $allobj = json_decode($json);
-
-
-var_dump($allobj);
 
 // $training = 0;
 
