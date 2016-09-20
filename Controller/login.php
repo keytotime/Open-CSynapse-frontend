@@ -1,9 +1,10 @@
 <?php
 
+require '../Model/hidden/api.php';
 session_start();
 
 if (isset($_POST['username']) && isset($_POST['password'])){
-    $url = "http://api:8888/login?username=" . $_POST['username'] . "&password=" . $_POST['password'];
+    $url = $api_url . "/login?username=" . $_POST['username'] . "&password=" . $_POST['password'];
     $ch = curl_init($url);
     $cookie_file = tempnam("/tmp", "user_cookie");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -14,6 +15,7 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     $matches = explode(' ', $cookie_list[0]);
     $matches = explode("\t", $matches[0]);
     $_SESSION['id'] = $matches[6];
+    $_SESSION['user'] = $_POST['username'];
     curl_close($ch);
 }
 

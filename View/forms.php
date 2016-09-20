@@ -29,7 +29,7 @@ echo $head . '
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="/app/new" method="POST" enctype="multipart/form-data">
+                                    <form action="create.php" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Name</label>
                                             <input type="text" name="description" class="form-control" required>

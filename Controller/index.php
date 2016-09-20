@@ -7,6 +7,7 @@ CSynapse
 */
 
 require '../Model/csynapse.php';
+require '../Model/hidden/api.php';
 
 session_start();
 
@@ -15,33 +16,32 @@ $_SESSION['active'] = '';
 
 $table = '';
 
-$url = "https://csynapse.com/app/all";
+$url = "http://" . $api_url . "/csynapses?user=sam";
 $json = file_get_contents($url);
 $allobj = json_decode($json);
-$training = 0;
+
+
+var_dump($allobj);
+
+// $training = 0;
 
 $position = 0;
-foreach($allobj->{'ids'} as $id){
-    $csynapse = new CSynapse($id);
+foreach($allobj->{'csynapses'} as $name){
+    //$csynapse = new CSynapse($id);
+    $type = "Vector";
+    $size = "X";
     $status = "Ready";
     $position = $position + 1;
-    if($csynapse->completion < 1){
-        $status = "Training";
-        $training = $training + 1;
-    }
-    else{
-        $_SESSION['active'] = $_SESSION['active'] . "<li><a href='/Controller/results.php?id=" . $id . "'>" . $csynapse->name . "</a></li>";
-    }
     $table = $table . "<tr>
                 <td>" . $position . "</td>
-                <td><a href=\"/Controller/results.php?id=" . $id . "\">" . $csynapse->name . "</a></td>
+                <td><a href=\"/Controller/results.php?id=" . $name . "\">" . $name . "</a></td>
                 <td>" . $status . "</td>
-                <td>" . $csynapse->type . "</td>
-                <td>" . $csynapse->size . "</td>
+                <td>" . $type . "</td>
+                <td>" . $size . "</td>
             </tr>";
 }
 
-$active = $position - $training; 
+// $active = $position - $training; 
 
 require '../View/head.php';
 require '../View/nav.php';

@@ -7,44 +7,52 @@ CSynapse
 */
 
 require '../Model/csynapse.php';
+require '../Model/hidden/api.php';
 
-$csynapse = new CSynapse($_GET['id']);
+$csynapse = $_GET['id'];
 
-$scatterdata = '[{';
+$url = "http://" . $api_url . "/testResults?user=sam&name=" . $csynapse;
+$json = file_get_contents($url);
+$allobj = json_decode($json);
 
-foreach($csynapse->graphdata as $key => $value){
-    $scatterdata = $scatterdata . "name: '" . $key . "', data: " . json_encode($value) . "},{";
-}
+// var_dump($allobj);
 
-if(strlen($scatterdata) > 2){
-    $scatterdata = substr($scatterdata, 0, -2);
-}
-else{
-    $scatterdata = '[{name: "Unplottable", data:[]}';
-}
-$scatterdata = $scatterdata .']';
+
+// $scatterdata = '[{';
+
+// foreach($csynapse->graphdata as $key => $value){
+//     $scatterdata = $scatterdata . "name: '" . $key . "', data: " . json_encode($value) . "},{";
+// }
+
+// if(strlen($scatterdata) > 2){
+//     $scatterdata = substr($scatterdata, 0, -2);
+// }
+// else{
+//     $scatterdata = '[{name: "Unplottable", data:[]}';
+// }
+// $scatterdata = $scatterdata .']';
+
+// $accuracydata = '[{';
+// $speeddata = '[{';
 
 $accuracydata = '[{';
 $speeddata = '[{';
 $datatable = '';
 
-foreach($csynapse->algorithms as $algo){
-    if($algo->status == 1){
-        $accuracydata = $accuracydata . "name: '" . $algo->name . "', data: [" . $algo->data->{'score'}*100 . "]},{";
-        $speeddata = $speeddata . "name: '" . $algo->name . "', data: [" . $algo->data->{'time'} . "]},{";
-        $datatable = $datatable . "<tr><td>" . $algo->name . "</td><td>" . round($algo->data->{'score'}*100,2) . "%</td><td>" . round($algo->data->{'time'},5) . " Seconds</td></tr>";
-    }
-    else{
-        $datatable = $datatable . "<tr><td>" . $algo->name . "</td><td>X</td><td>Not Yet Finished</td></tr>";
-    }
+foreach($allobj as $algo){
+    $accuracydata = $accuracydata . "name: '" . $algo->{"algoId"} . "', data: [" . $algo->{"score"}*100 . "]},{";
+    $speeddata = $speeddata . "name: '" . $algo->{"algoId"} . "', data: [" . $algo->{"time"} . "]},{";
+    $datatable = $datatable . "<tr><td>" . $algo->{"algoId"} . "</td><td>" . round($algo->{"score"},2) . "%</td><td>". round($algo->{"time"},5) ."s</td></tr>";
 
 }
+
+
 
 if(strlen($speeddata) > 2){
     $speeddata = substr($speeddata, 0, -2);
 }
 else{
-    $scatterdata = '[';
+    $speeddata = '[';
 }
 $speeddata = $speeddata .']';
 
@@ -52,9 +60,22 @@ if(strlen($accuracydata) > 2){
     $accuracydata = substr($accuracydata, 0, -2);
 }
 else{
-    $scatterdata = '[';
+    $accuracydata = '[';
 }
 $accuracydata = $accuracydata .']';
+
+
+$url = "http://" . $api_url . "/getPoints?user=sam&name=" . $csynapse;
+$json = file_get_contents($url);
+$allobj = json_decode($json);
+$allobj = json_decode($allobj[0]->{1});
+
+echo($allobj[0]->{"2"});
+
+$scatterdata = $allobj;
+
+//$scatterdata = "[{name: '" $allobj[0]->{1}[0] "' data: " . $allobj[0]->{1}[1] . "]";
+
 
 require '../View/head.php';
 require '../View/nav.php';
