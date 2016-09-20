@@ -1,5 +1,5 @@
 <?php
 
-$api_url = "128.110.38.127:8888";
+$api_url = "https://csynapse.com/api";
 
 ?>

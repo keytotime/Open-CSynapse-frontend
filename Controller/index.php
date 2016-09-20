@@ -11,12 +11,9 @@ require '../Model/hidden/api.php';
 
 session_start();
 
-$_SESSION['active'] = '';
-
-
 $table = '';
 
-$url = "http://" . $api_url . "/csynapses?user=sam";
+$url = $api_url . "/csynapses?user=sam";
 $json = file_get_contents($url);
 $allobj = json_decode($json);
 
