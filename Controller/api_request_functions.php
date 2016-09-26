@@ -16,7 +16,7 @@ function make_api_post_request($url)
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
     $_SESSION['id'] = $cookie_list;
-    var_dump($data);
+    // var_dump($data);
     curl_close($ch);
     unlink($cookie_file);
     return $data;
@@ -37,7 +37,7 @@ function make_api_get_request($url)
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
     $_SESSION['id'] = $cookie_list;
-    var_dump($data);
+    // var_dump($data);
     curl_close($ch);
     unlink($cookie_file);
     return $data;

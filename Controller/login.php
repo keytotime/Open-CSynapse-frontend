@@ -1,22 +1,16 @@
 <?php
 
 require '../Model/hidden/api.php';
+require '../Controller/api_request_functions.php';
+
 session_start();
 
 if (isset($_POST['username']) && isset($_POST['password'])){
     $url = $api_url . "/login?username=" . $_POST['username'] . "&password=" . $_POST['password'];
-    $ch = curl_init($url);
-    $cookie_file = tempnam("/tmp", "user_cookie");
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
-    curl_setopt($ch, CURLOPT_POST, true);
-    $data = curl_exec($ch);
-    $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
-    $matches = explode(' ', $cookie_list[0]);
-    $matches = explode("\t", $matches[0]);
-    $_SESSION['id'] = $matches[6];
+    $json = make_api_post_request($url);
     $_SESSION['user'] = $_POST['username'];
-    curl_close($ch);
+    echo($_SESSION['id']);
+    echo($_SESSION['user']);
 }
 
 if(isset($_SESSION['id'])){

@@ -8,11 +8,12 @@ CSynapse
 
 require '../Model/csynapse.php';
 require '../Model/hidden/api.php';
+require '../Controller/api_request_functions.php';
 
 $csynapse = $_GET['id'];
 
 $url = $api_url . "/testResults?user=sam&name=" . $csynapse;
-$json = file_get_contents($url);
+$json = make_api_get_request($url);
 $allobj = json_decode($json);
 
 // var_dump($allobj);
@@ -46,6 +47,7 @@ foreach($allobj as $algo){
 
 }
 
+echo($speeddata);
 
 
 if(strlen($speeddata) > 2){
@@ -65,8 +67,8 @@ else{
 $accuracydata = $accuracydata .']';
 
 
-$url = "http://" . $api_url . "/getPoints?user=sam&name=" . $csynapse;
-$json = file_get_contents($url);
+$url = $api_url . "/testResults?user=sam&name=" . $csynapse;
+$json = make_api_get_request($url);
 $allobj = json_decode($json);
 $allobj = json_decode($allobj[0]->{1});
 
