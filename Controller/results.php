@@ -12,29 +12,32 @@ require '../Controller/api_request_functions.php';
 
 $csynapse = $_GET['id'];
 
-$url = $api_url . "/testResults?user=sam&name=" . $csynapse;
+$url = $api_url . "/getPoints?name=" . $csynapse;
 $json = make_api_get_request($url);
 $allobj = json_decode($json);
+$allobj = $allobj[0];
+$allobj = $allobj->{'1'};
+$allobj = str_replace('\'', '"', $allobj);
+$allobj = json_decode($allobj);
 
-// var_dump($allobj);
+$scatterdata = '[{';
+
+foreach($allobj as $key => $value){
+    $scatterdata = $scatterdata . "name: '" . $key . "', data: " . json_encode($value) . "},{";
+}
+
+if(strlen($scatterdata) > 2){
+    $scatterdata = substr($scatterdata, 0, -2);
+}
+else{
+    $scatterdata = '[{name: "Unplottable", data:[]}';
+}
+$scatterdata = $scatterdata .']';
 
 
-// $scatterdata = '[{';
-
-// foreach($csynapse->graphdata as $key => $value){
-//     $scatterdata = $scatterdata . "name: '" . $key . "', data: " . json_encode($value) . "},{";
-// }
-
-// if(strlen($scatterdata) > 2){
-//     $scatterdata = substr($scatterdata, 0, -2);
-// }
-// else{
-//     $scatterdata = '[{name: "Unplottable", data:[]}';
-// }
-// $scatterdata = $scatterdata .']';
-
-// $accuracydata = '[{';
-// $speeddata = '[{';
+$url = $api_url . "/testResults?name=" . $csynapse;
+$json = make_api_get_request($url);
+$allobj = json_decode($json);
 
 $accuracydata = '[{';
 $speeddata = '[{';
@@ -46,8 +49,6 @@ foreach($allobj as $algo){
     $datatable = $datatable . "<tr><td>" . $algo->{"algoId"} . "</td><td>" . round($algo->{"score"},2) . "%</td><td>". round($algo->{"time"},5) ."s</td></tr>";
 
 }
-
-echo($speeddata);
 
 
 if(strlen($speeddata) > 2){
@@ -67,14 +68,14 @@ else{
 $accuracydata = $accuracydata .']';
 
 
-$url = $api_url . "/testResults?user=sam&name=" . $csynapse;
+$url = $api_url . "/testResults?name=" . $csynapse;
 $json = make_api_get_request($url);
 $allobj = json_decode($json);
 $allobj = json_decode($allobj[0]->{1});
 
-echo($allobj[0]->{"2"});
+// echo($allobj[0]->{"2"});
 
-$scatterdata = $allobj;
+// $scatterdata = "[]";
 
 //$scatterdata = "[{name: '" $allobj[0]->{1}[0] "' data: " . $allobj[0]->{1}[1] . "]";
 
