@@ -14,6 +14,7 @@ $csynapse = $_GET['id'];
 
 $url = $api_url . "/getPoints?name=" . $csynapse;
 $json = make_api_get_request($url);
+$json = make_api_get_request($url);
 // echo($url);
 // var_dump($json);
 $allobj = json_decode($json);
