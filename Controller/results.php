@@ -15,8 +15,8 @@ $csynapse = $_GET['id'];
 $url = $api_url . "/getPoints?name=" . $csynapse;
 $json = make_api_get_request($url);
 $allobj = json_decode($json);
-$allobj = $allobj[0];
-$allobj = $allobj->{'1'};
+$allobj = $allobj[1];
+$allobj = $allobj->{'3'};
 $allobj = str_replace('\'', '"', $allobj);
 $allobj = json_decode($allobj);
 
@@ -33,6 +33,8 @@ else{
     $scatterdata = '[{name: "Unplottable", data:[]}';
 }
 $scatterdata = $scatterdata .']';
+
+echo($scatterdata);
 
 
 $url = $api_url . "/testResults?name=" . $csynapse;

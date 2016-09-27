@@ -53,7 +53,7 @@ echo $head . '
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">' . $active . '</div>
+                                        <div class="huge">' . $position . '</div>
                                         <div>Ready</div>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@ echo $head . '
                                         <i class="fa fa-cog fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">' . $training . '</div>
+                                        <div class="huge">0</div>
                                         <div>Training</div>
                                     </div>
                                 </div>
