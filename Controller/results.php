@@ -34,7 +34,6 @@ else{
 }
 $scatterdata = $scatterdata .']';
 
-echo($scatterdata);
 
 
 $url = $api_url . "/testResults?name=" . $csynapse;
