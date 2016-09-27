@@ -52,7 +52,7 @@ $datatable = '';
 foreach($allobj as $algo){
     $accuracydata = $accuracydata . "name: '" . $algo->{"algoId"} . "', data: [" . $algo->{"score"}*100 . "]},{";
     $speeddata = $speeddata . "name: '" . $algo->{"algoId"} . "', data: [" . $algo->{"time"} . "]},{";
-    $datatable = $datatable . "<tr><td>" . $algo->{"algoId"} . "</td><td>" . round($algo->{"score"},2) . "%</td><td>". round($algo->{"time"},5) ."s</td></tr>";
+    $datatable = $datatable . "<tr><td>" . $algo->{"algoId"} . "</td><td>" . round($algo->{"score"}*100,2) . "%</td><td>". round($algo->{"time"},5) ."s</td></tr>";
 
 }
 

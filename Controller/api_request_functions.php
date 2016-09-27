@@ -20,7 +20,7 @@ function make_api_post_request($url)
     // var_dump($data);
     curl_close($ch);
     unlink($cookie_file);
-    echo($data);
+    // echo($data);
     return $data;
 }
 function make_api_get_request($url)

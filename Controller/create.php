@@ -15,6 +15,16 @@ if(isset($_POST['name'])){
 
 	$url = $api_url . "/data";
 	make_api_post_file_request($url, $_POST, "upload", "upload");
+
+	$url = $api_url . "/test?name=" . $_POST['name'];
+
+	$algorithms = $_POST['algorithm'];
+
+	foreach($algorithms as $algorithm){
+		$url = $url . "&algorithm=" . $algorithm;
+	}
+	echo($url);
+	make_api_post_request($url);
 }
 
 require '../View/head.php';
