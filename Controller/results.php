@@ -14,13 +14,18 @@ $csynapse = $_GET['id'];
 
 $url = $api_url . "/getPoints?name=" . $csynapse;
 $json = make_api_get_request($url);
+// echo($url);
+// var_dump($json);
 $allobj = json_decode($json);
 $allobj = $allobj[1];
 $allobj = $allobj->{'3'};
 $allobj = str_replace('\'', '"', $allobj);
 $allobj = json_decode($allobj);
 
+
+
 $scatterdata = '[{';
+
 
 foreach($allobj as $key => $value){
     $scatterdata = $scatterdata . "name: '" . $key . "', data: " . json_encode($value) . "},{";

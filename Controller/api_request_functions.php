@@ -61,11 +61,11 @@ function make_api_post_file_request($url, $post_opts, $file_opt, $filename)
     curl_setopt($ch, CURLOPT_POST, true);
     $post_opts[$file_opt] = new CurlFile($_FILES[$filename]["tmp_name"], "text/plain", "upload");#'@'.realpath($_FILES[$filename]["tmp_name"]);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post_opts);
-    var_dump($post_opts);
+    // var_dump($post_opts);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
     $_SESSION['id'] = $cookie_list;
-    var_dump($data);
+    // var_dump($data);
     curl_close($ch);
     unlink($cookie_file);
     return $data;

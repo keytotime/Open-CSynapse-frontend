@@ -32,7 +32,7 @@ echo $head . '
                                     <form action="create.php" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" name="description" class="form-control" required>
+                                            <input type="text" name="name" class="form-control" required>
                                             <p class="help-block">Give your CSynapse a descrptive name.</p>
                                             <br>
                                             <label>Choose Your Algorithms</label>

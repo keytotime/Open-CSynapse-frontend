@@ -9,9 +9,12 @@ CSynapse
 require '../Model/hidden/api.php';
 require '../Controller/api_request_functions.php';
 
-if(isset($_POST['description'])){
-	create($_POST['description']);
+if(isset($_POST['name'])){
+	create($_POST['name']);
 	header("Location: index.php");
+
+	$url = $api_url . "/data";
+	make_api_post_file_request($url, $_POST, "upload", "upload");
 }
 
 require '../View/head.php';

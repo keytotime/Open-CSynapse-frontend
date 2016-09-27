@@ -25,9 +25,11 @@ $allobj = json_decode($json);
 
 // $training = 0;
 
+$_SESSION['active'] = '';
+
 $position = 0;
 foreach($allobj->{'csynapses'} as $name){
-    //$csynapse = new CSynapse($id);
+    $_SESSION['active'] = $_SESSION['active'] . "<li><a href='/Controller/results.php?id=" . $name . "'>" . $name . "</a></li>";
     $type = "Vector";
     $size = "X";
     $status = "Ready";
