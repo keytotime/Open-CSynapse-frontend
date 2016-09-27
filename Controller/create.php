@@ -25,6 +25,8 @@ if(isset($_POST['name'])){
 	}
 	echo($url);
 	make_api_post_request($url);
+
+	header("Location: /index.php");
 }
 
 require '../View/head.php';
