@@ -42,7 +42,7 @@
                         <h3 class="panel-title">Create an Account</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="/register" method="POST" enctype="multipart/form-data">
+                        <form action="register.php" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="User Name" name="username" autofocus>
@@ -51,7 +51,7 @@
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                                <input type="submit" value="Login" class="btn btn-lg btn-success btn-block">
                             </fieldset>
                         </form>
                     </div>

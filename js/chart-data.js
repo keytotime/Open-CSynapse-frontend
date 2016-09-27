@@ -7,7 +7,20 @@ $(function () {
             type: 'scatter',
             plotBackgroundColor: null,
             plotBorderWidth: null,
-            plotShadow: false
+            plotShadow: false,
+            options3d: {
+                enabled: true,
+                alpha: 10,
+                beta: 30,
+                depth: 250,
+                viewDistance: 5,
+                fitToPlot: false,
+                frame: {
+                    bottom: { size: 1, color: 'rgba(0,0,0,0.02)' },
+                    back: { size: 1, color: 'rgba(0,0,0,0.04)' },
+                    side: { size: 1, color: 'rgba(0,0,0,0.06)' }
+                }
+            }
         },    
         title: {
             text: ''

@@ -1,4 +1,5 @@
 <?php
+
 function make_api_post_request($url)
 {
     if (session_status() == PHP_SESSION_NONE) {
@@ -16,9 +17,10 @@ function make_api_post_request($url)
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
     $_SESSION['id'] = $cookie_list;
-    var_dump($data);
+    // var_dump($data);
     curl_close($ch);
     unlink($cookie_file);
+    echo($data);
     return $data;
 }
 function make_api_get_request($url)
@@ -37,7 +39,7 @@ function make_api_get_request($url)
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
     $_SESSION['id'] = $cookie_list;
-    var_dump($data);
+    // var_dump($data);
     curl_close($ch);
     unlink($cookie_file);
     return $data;
@@ -68,4 +70,35 @@ function make_api_post_file_request($url, $post_opts, $file_opt, $filename)
     unlink($cookie_file);
     return $data;
 }
+
+function login($username,$password){
+    require '../Model/hidden/api.php';
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    $api_url = "https://csynapse.com/api";
+    $url = $api_url . "/login?username=" . $username . "&password=" . $password;
+    $json = make_api_post_request($url);
+    $_SESSION['user'] = $username;
+}
+
+function register($username,$password){
+    require '../Model/hidden/api.php';
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    $url = $api_url . "/register?username=" . $username . "&password=" . $password;
+    $json = make_api_post_request($url);
+    login($username,$password);
+}
+
+function create($name){
+    require '../Model/hidden/api.php';
+    
+    $url = $api_url . "/create?name=" . $name;
+    $json = make_api_post_request($url);
+}
+
 ?>

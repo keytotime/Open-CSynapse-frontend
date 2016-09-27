@@ -56,7 +56,8 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input type="submit" value="Submit" class="btn btn-lg btn-success btn-block">Login</a>
+                                <input type="submit" value="Login" class="btn btn-lg btn-success btn-block">
+                                <a href="register.php">Not regisered? Sign up</a>
                             </fieldset>
                         </form>
                     </div>

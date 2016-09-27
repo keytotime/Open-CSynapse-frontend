@@ -8,30 +8,20 @@ CSynapse
 
 require '../Model/csynapse.php';
 require '../Model/hidden/api.php';
+require '../Controller/api_request_functions.php';
 
 session_start();
 
-echo($_SESSION['id']);
-echo($_SESSION['user']);
+// echo($_SESSION['id'][0]);
+// echo("<br>");
+// echo($_SESSION['user']);
 
 $table = '';
 
-$url = $api_url . "/csynapses?user=Nick";
-
-$opts = array(
-  'http'=>array(
-    'method'=>"GET",
-    'header'=>"Cookie: beaker.session.id=" . $_SESSION['id'] . ";"
-  )
-);
-$context = stream_context_create($opts);
-echo("<br><br>");
-var_dump($context);
-echo("<br><br>");
-$contents = file_get_contents($url, false, $context);
-
-$json = file_get_contents($url);
+$url = $api_url . "/csynapses";
+$json = make_api_get_request($url);
 $allobj = json_decode($json);
+// var_dump($allobj);
 
 // $training = 0;
 

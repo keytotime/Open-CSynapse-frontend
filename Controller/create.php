@@ -7,14 +7,11 @@ CSynapse
 */
 
 require '../Model/hidden/api.php';
+require '../Controller/api_request_functions.php';
 
 if(isset($_POST['description'])){
-	$url = $api_url . "/create?user=" . $_SESSION['user'] . "&name=" . $_POST['description'];
-	$json = file_get_contents($url);
-	$allobj = json_decode($json);
-
-	//var_dump($allobj);
-
+	create($_POST['description']);
+	header("Location: index.php");
 }
 
 require '../View/head.php';

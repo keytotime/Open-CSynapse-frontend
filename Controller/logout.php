@@ -7,6 +7,6 @@ if(isset($_SESSION['id'])){
     unset($_SESSION['user']);
 }
 
-header("Location: /index.php");
+header("Location: login.php");
 
 ?>
