@@ -101,4 +101,15 @@ function create($name){
     $json = make_api_post_request($url);
 }
 
+function logged_in(){
+    $loggedin = false;
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    if (isset($_SESSION['id'])){
+        $loggedin = true;
+    }
+    return $loggedin;
+}
+
 ?>

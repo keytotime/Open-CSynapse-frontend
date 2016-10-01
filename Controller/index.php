@@ -10,40 +10,40 @@ require '../Model/csynapse.php';
 require '../Model/hidden/api.php';
 require '../Controller/api_request_functions.php';
 
-session_start();
 
-// echo($_SESSION['id'][0]);
-// echo("<br>");
-// echo($_SESSION['user']);
+if(!logged_in()){
+    header("Location: login.php");
+    die();
+    return;
+}
 
 $table = '';
+$_SESSION['active'] = '';
+$position = 0;
 
 $url = $api_url . "/csynapses";
 $json = make_api_get_request($url);
 $allobj = json_decode($json);
-// var_dump($allobj);
 
-// $training = 0;
 
-$_SESSION['active'] = '';
 
-$position = 0;
-foreach($allobj->{'csynapses'} as $name){
-    $_SESSION['active'] = $_SESSION['active'] . "<li><a href='/Controller/results.php?id=" . $name . "'>" . $name . "</a></li>";
-    $type = "Vector";
-    $size = "X";
-    $status = "Ready";
-    $position = $position + 1;
-    $table = $table . "<tr>
-                <td>" . $position . "</td>
-                <td><a href=\"/Controller/results.php?id=" . $name . "\">" . $name . "</a></td>
-                <td>" . $status . "</td>
-                <td>" . $type . "</td>
-                <td>" . $size . "</td>
-            </tr>";
+if(!empty($allobj)){
+    
+    foreach($allobj->{'csynapses'} as $name){
+        $_SESSION['active'] = $_SESSION['active'] . "<li><a href='/Controller/results.php?id=" . $name . "'>" . $name . "</a></li>";
+        $type = "Vector";
+        $size = "X";
+        $status = "Ready";
+        $position = $position + 1;
+        $table = $table . "<tr>
+                    <td>" . $position . "</td>
+                    <td><a href=\"/Controller/results.php?id=" . $name . "\">" . $name . "</a></td>
+                    <td>" . $status . "</td>
+                    <td>" . $type . "</td>
+                    <td>" . $size . "</td>
+                </tr>";
+    }
 }
-
-// $active = $position - $training; 
 
 require '../View/head.php';
 require '../View/nav.php';

@@ -6,7 +6,9 @@ cs4000 - Capstone
 CSynapse
 */
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 $nav = '<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">

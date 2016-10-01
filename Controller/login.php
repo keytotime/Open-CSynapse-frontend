@@ -10,8 +10,8 @@ if (isset($_POST['username']) && isset($_POST['password'])){
 
 }
 
-if(isset($_SESSION['id'])){
-    header("Location: /index.php");
+if(logged_in()){
+    header("Location: index.php");
 }
 
 else{

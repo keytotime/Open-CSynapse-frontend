@@ -37,36 +37,7 @@ echo $head . '
                                             <br>
                                             <label>Choose Your Algorithms</label>
                                             <div class="btn-group" data-toggle="buttons">
-                                            <label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
-                                                <input type="checkbox" name="algorithm[]" value="adaBoost" > Adaboost with Decision Trees
-                                            </label>
-                                            <label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
-                                                <input type="checkbox" name="algorithm[]" value="decisionTree" > Decision Tree
-                                            </label>
-                                            <label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
-                                                <input type="checkbox" name="algorithm[]" value="guassNB" > Gaussian NaiveBayes
-                                            </label>
-                                            <label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
-                                                <input type="checkbox" name="algorithm[]" value="knearest" > Nearest Neighbors
-                                            </label>
-                                            <label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
-                                                <input type="checkbox" name="algorithm[]" value="nearestCentroid" > Nearest Centroid
-                                            </label>
-                                            <label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
-                                                <input type="checkbox" name="algorithm[]" value="passiveAggressive" > Passive Aggressive Classifier
-                                            </label>
-                                            <label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
-                                                <input type="checkbox" name="algorithm[]" value="perceptron" > Perceptron
-                                            </label>
-                                            <label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
-                                                <input type="checkbox" name="algorithm[]" value="randomForest" > Random Forest
-                                            </label>
-                                            <label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
-                                                <input type="checkbox" name="algorithm[]" value="sgd" > Vanilla Stochastic Gradient Descent
-                                            </label>
-                                            <label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
-                                                <input type="checkbox" name="algorithm[]" value="svm" > Support Vector Machine
-                                            </label>
+                                            ' . $buttons . '
                                         </div>
 
                                         </div>

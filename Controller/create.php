@@ -9,6 +9,10 @@ CSynapse
 require '../Model/hidden/api.php';
 require '../Controller/api_request_functions.php';
 
+if(!logged_in()){
+    header("Location: login.php");
+}
+
 if(isset($_POST['name'])){
 	create($_POST['name']);
 	header("Location: index.php");
@@ -27,6 +31,18 @@ if(isset($_POST['name'])){
 	make_api_post_request($url);
 
 	header("Location: /index.php");
+}
+
+$url = $api_url . "/algorithms";
+$json = make_api_get_request($url);
+$allobj = json_decode($json);
+
+$buttons = "";
+
+foreach($allobj as $algo){
+    $buttons = $buttons . '<label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
+    <input type="checkbox" name="algorithm[]" value="' . $algo->{'algoId'} . '"> ' . $algo->{'name'} . '
+    </label>';
 }
 
 require '../View/head.php';
