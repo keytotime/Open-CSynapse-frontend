@@ -20,12 +20,13 @@ $csynapse = $_GET['id'];
 
 $url = $api_url . "/getPoints?name=" . $csynapse;
 $json = make_api_get_request($url);
+$allobj = json_decode($json);
 
 
 $scatterdata = '[{';
 
-if(!empty($allobj)){
-    $allobj = json_decode($json);
+if(!empty($allobj->{'3'})){
+
     $allobj = $allobj->{'3'};
     foreach($allobj as $key => $value){
         $scatterdata = $scatterdata . "name: '" . $key . "', data: " . json_encode($value) . "},{";
@@ -44,13 +45,13 @@ $scatterdata = $scatterdata .']';
 
 $url = $api_url . "/testResults?name=" . $csynapse;
 $json = make_api_get_request($url);
-
+$allobj = json_decode($json);
 
 $accuracydata = '[{';
 $speeddata = '[{';
 $datatable = '';
-if(!empty($allobj)){
-    $allobj = json_decode($json);
+if(!empty($allobj->{'testResults'})){
+    
     $allobj = $allobj->{'testResults'};
     foreach($allobj as $algo){
         $accuracydata = $accuracydata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"score"}*100 . "]},{";
