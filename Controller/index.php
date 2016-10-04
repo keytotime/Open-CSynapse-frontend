@@ -32,7 +32,7 @@ if(!empty($allobj->{'csynapses'})){
         $_SESSION['active'] = $_SESSION['active'] . "<li><a href='/Controller/results.php?id=" . $name . "'>" . $name . "</a></li>";
         $type = "Vector";
         $size = "X";
-        $status = "Ready";
+        $status = "Unknown";
         $position = $position + 1;
         $table = $table . "<tr>
                     <td>" . $position . "</td>
