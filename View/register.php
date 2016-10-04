@@ -51,7 +51,8 @@
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input type="submit" value="Login" class="btn btn-lg btn-success btn-block">
+                                <input type="submit" value="Register" class="btn btn-lg btn-success btn-block">
+                                <a href="login.php">Already have an account? Sign in</a>
                             </fieldset>
                         </form>
                     </div>

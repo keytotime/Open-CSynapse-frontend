@@ -16,6 +16,19 @@ if(!logged_in()){
 }
 
 $csynapse = $_GET['id'];
+if(isset($_GET['plot'])){
+    $plot = $_GET['plot'];
+}
+else{
+    $plot = "2d";
+}
+
+if($plot == "2d"){
+    $plotdisplay = '<script src="../js/scatter2d.js"></script>';
+}
+else if($plot == "3d"){
+    $plotdisplay = '<script src="../js/scatter3d.js"></script>';
+}
 
 $url = $api_url . "/getPoints?name=" . $csynapse;
 $json = make_api_get_request($url);

@@ -67,10 +67,24 @@ echo $head . '
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Plot of Input Data
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="results.php?id=' . $csynapse . '&plot=2d">2-Dimensional</a>
+                                        </li>
+                                        <li><a href="results.php?id=' . $csynapse . '&plot=3d">3-Dimensional</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="scatterplot"></div>
+                            <div id="scatterplot'. $plot .'"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -122,7 +136,10 @@ echo $head . '
     var speeddata = ' . $speeddata . ';
     var scatterdata = ' . $scatterdata . ';
     </script>
-    <script src="../js/chart-data.js"></script>
+    <script src="../js/accuracy.js"></script>
+    <script src="../js/runspeed.js"></script>'
+    . $plotdisplay . 
+    '
 
 
     <!-- DataTables JavaScript -->
