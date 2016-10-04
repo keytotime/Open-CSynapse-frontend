@@ -6,7 +6,6 @@ cs4000 - Capstone
 CSynapse
 */
 
-require '../Model/csynapse.php';
 require '../Model/hidden/api.php';
 require '../Controller/api_request_functions.php';
 

@@ -126,57 +126,57 @@ echo $head . '
                         <div class="panel-heading">
                             <i class="fa fa-bell fa-fw"></i> Notifications Panel
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="glyphicon glyphicon-ok"></i> Android Malware Detection Completed Training
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="glyphicon glyphicon-cog"></i> Traffic Congestion Training Started
-                                    <span class="pull-right text-muted small"><em>4 Hours ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="glyphicon glyphicon-ok"></i> Traffic Congestion CSynapse Created
-                                    <span class="pull-right text-muted small"><em>4 Hours ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="glyphicon glyphicon-cog"></i> Weather Patterns: Texas Training Started
-                                    <span class="pull-right text-muted small"><em>6 Hours ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="glyphicon glyphicon-ok"></i> Weather Patterns: Texas CSynapse Created
-                                    <span class="pull-right text-muted small"><em>7 Hours Ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="glyphicon glyphicon-trash"></i> Poker Hand Analysis CSynapse Deleted
-                                    <span class="pull-right text-muted small"><em>10 Hours Ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="glyphicon glyphicon-ok"></i> Poker Hand Analysis Training Completed
-                                    <span class="pull-right text-muted small"><em>1 Day Ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="glyphicon glyphicon-cog"></i> Poker Hand Analysis Training Started
-                                    <span class="pull-right text-muted small"><em>2 Days Ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Poker Hand Analysis CSynapse Created
-                                    <span class="pull-right text-muted small"><em>2 Days Ago</em>
-                                    </span>
-                                </a>
-                            </div>
-                            <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                        <!-- /.panel-heading -->' .
+                        // <div class="panel-body">
+                        //     <div class="list-group">
+                        //         <a href="#" class="list-group-item">
+                        //             <i class="glyphicon glyphicon-ok"></i> Android Malware Detection Completed Training
+                        //             <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                        //             </span>
+                        //         </a>
+                        //         <a href="#" class="list-group-item">
+                        //             <i class="glyphicon glyphicon-cog"></i> Traffic Congestion Training Started
+                        //             <span class="pull-right text-muted small"><em>4 Hours ago</em>
+                        //             </span>
+                        //         </a>
+                        //         <a href="#" class="list-group-item">
+                        //             <i class="glyphicon glyphicon-ok"></i> Traffic Congestion CSynapse Created
+                        //             <span class="pull-right text-muted small"><em>4 Hours ago</em>
+                        //             </span>
+                        //         </a>
+                        //         <a href="#" class="list-group-item">
+                        //             <i class="glyphicon glyphicon-cog"></i> Weather Patterns: Texas Training Started
+                        //             <span class="pull-right text-muted small"><em>6 Hours ago</em>
+                        //             </span>
+                        //         </a>
+                        //         <a href="#" class="list-group-item">
+                        //             <i class="glyphicon glyphicon-ok"></i> Weather Patterns: Texas CSynapse Created
+                        //             <span class="pull-right text-muted small"><em>7 Hours Ago</em>
+                        //             </span>
+                        //         </a>
+                        //         <a href="#" class="list-group-item">
+                        //             <i class="glyphicon glyphicon-trash"></i> Poker Hand Analysis CSynapse Deleted
+                        //             <span class="pull-right text-muted small"><em>10 Hours Ago</em>
+                        //             </span>
+                        //         </a>
+                        //         <a href="#" class="list-group-item">
+                        //             <i class="glyphicon glyphicon-ok"></i> Poker Hand Analysis Training Completed
+                        //             <span class="pull-right text-muted small"><em>1 Day Ago</em>
+                        //             </span>
+                        //         </a>
+                        //         <a href="#" class="list-group-item">
+                        //             <i class="glyphicon glyphicon-cog"></i> Poker Hand Analysis Training Started
+                        //             <span class="pull-right text-muted small"><em>2 Days Ago</em>
+                        //             </span>
+                        //         </a>
+                        //         <a href="#" class="list-group-item">
+                        //             <i class="fa fa-money fa-fw"></i> Poker Hand Analysis CSynapse Created
+                        //             <span class="pull-right text-muted small"><em>2 Days Ago</em>
+                        //             </span>
+                        //         </a>
+                        //     </div>
+                        //     <!-- /.list-group -->
+                            '<a href="#" class="btn btn-default btn-block">View All Alerts</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>
