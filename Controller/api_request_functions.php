@@ -1,5 +1,26 @@
 <?php
 
+function return_file($data, $filename)
+{
+    $tmp_file = tempnam("/tmp", "tmp_download");
+    $tmp_file_d = fopen($tmp_file, "w") or die("Unable to open temporary download file!");
+    fwrite($tmp_file_d, $data);
+    fclose($tmp_file_d);
+    
+    if (file_exists($tmp_file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.$filename.'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($tmp_file));
+        readfile($tmp_file);
+        unlink($tmp_file);
+        exit();
+    }
+}
+
 function make_api_post_request($url)
 {
     if (session_status() == PHP_SESSION_NONE) {
@@ -23,7 +44,8 @@ function make_api_post_request($url)
     // echo($data);
     return $data;
 }
-function make_api_get_request($url)
+
+function make_api_get_request($url, $return_file = false, $filename="")
 {
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -42,7 +64,14 @@ function make_api_get_request($url)
     // var_dump($data);
     curl_close($ch);
     unlink($cookie_file);
-    return $data;
+    if ($return_file)
+    {
+        return_file($data, $filename);
+    }
+    else
+    {
+        return $data;
+    }
 }
 
 function make_api_post_array_request($url, $post_opts)
