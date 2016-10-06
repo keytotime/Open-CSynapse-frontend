@@ -16,6 +16,7 @@ if(!logged_in()){
 }
 
 $csynapse = $_GET['id'];
+
 if(isset($_GET['plot'])){
     $plot = $_GET['plot'];
 }
@@ -72,6 +73,8 @@ if(!empty($allobj->{'testResults'})){
 
     }
 }
+
+$datatable = $datatable . "</tbody></table><a href='add.php?csynapse=" . $csynapse . "'>Add more algorithms...</a>";
 
 
 if(strlen($speeddata) > 2){

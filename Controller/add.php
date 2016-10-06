@@ -14,15 +14,17 @@ if(!logged_in()){
 }
 
 
+if(isset($_GET['csynapse'])){
+	$csynapse = $_GET['csynapse'];
+}
+
+
+
 //If name is given, add algorithms requested to CSynapse.
-if(isset($_POST['name'])){
-	// If upload data is given, create new CSynapse with it. 
-	create($_POST['name']);
+if(isset($_POST['algorithm'])){
+	echo($_POST['algorithm']);
 
-	$url = $api_url . "/data";
-	make_api_post_file_request($url, $_POST, "upload", "upload");
-
-	$url = $api_url . "/test?name=" . $_POST['name'];
+	$url = $api_url . "/test?name=" . $csynapse;
 
 	$algorithms = $_POST['algorithm'];
 
@@ -31,7 +33,7 @@ if(isset($_POST['name'])){
 	}
 	make_api_post_request($url);
 
-	header("Location: /index.php");
+	header("Location: results.php?id=" . $csynapse);
 }
 
 $url = $api_url . "/algorithms";
@@ -50,6 +52,6 @@ foreach($allobj as $algo){
 
 require '../View/head.php';
 require '../View/nav.php';
-require '../View/create.php';
+require '../View/add.php';
 
 ?>

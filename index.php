@@ -8,6 +8,6 @@
 </script>
 </head>
 <body>
-Go to <a href="Controller/index.php">/Controller/index.php</a>
+Go to <a href="Controller/index.php">/Controller/login.php</a>
 </body>
 </html>
