@@ -39,6 +39,7 @@ if(isset($_POST['algorithm'])){
 $url = $api_url . "/algorithms";
 $json = make_api_get_request($url);
 $allobj = json_decode($json);
+$allobj = $allobj->{'algorithms'};
 
 $buttons = "";
 
