@@ -88,7 +88,8 @@ function make_api_post_array_request($url, $post_opts)
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_opts);
+    curl_setopt_custom_postfields($ch, $post_opts);
+    // curl_setopt($ch, CURLOPT_POSTFIELDS, $post_opts);
     // var_dump($post_opts);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
@@ -99,7 +100,69 @@ function make_api_post_array_request($url, $post_opts)
     return $data;
 }
 
-function make_api_post_file_request($url, $post_opts, $file_opt, $filename)
+#used from https://gist.github.com/simensen/288242 does not have a license stated.
+#builds the multipart http request where CURLFile cannot do it natively.
+#DO NOT MESS WITH THIS FUNCTION.
+function curl_setopt_custom_postfields($ch, $postfields, $headers = null) {
+    $algos = hash_algos();
+    $hashAlgo = null;
+    foreach ( array('sha1', 'md5') as $preferred ) {
+        if ( in_array($preferred, $algos) ) {
+            $hashAlgo = $preferred;
+            break;
+        }
+    }
+    if ( $hashAlgo === null ) { list($hashAlgo) = $algos; }
+    $boundary =
+        '----------------------------' .
+        substr(hash($hashAlgo, 'cURL-php-multiple-value-same-key-support' . microtime()), 0, 12);
+
+    $body = array();
+    $crlf = "\r\n";
+    $fields = array();
+    foreach ( $postfields as $key => $value ) {
+        if ( is_array($value) ) {
+            foreach ( $value as $v ) {
+                $fields[] = array($key, $v);
+            }
+        } else {
+            $fields[] = array($key, $value);
+        }
+    }
+    foreach ( $fields as $field ) {
+        list($key, $value) = $field;
+        if ( strpos($value, '@') === 0 ) {
+            preg_match('/^@(.*?)$/', $value, $matches);
+            list($dummy, $filename) = $matches;
+            $body[] = '--' . $boundary;
+            $body[] = 'Content-Disposition: form-data; name="' . $key . '"; filename="' . basename($filename) . '"';
+            $body[] = 'Content-Type: application/octet-stream';
+            $body[] = '';
+            $body[] = file_get_contents($filename);
+        } else {
+            $body[] = '--' . $boundary;
+            $body[] = 'Content-Disposition: form-data; name="' . $key . '"';
+            $body[] = '';
+            $body[] = $value;
+        }
+    }
+    $body[] = '--' . $boundary . '--';
+    $body[] = '';
+    $contentType = 'multipart/form-data; boundary=' . $boundary;
+    $content = join($crlf, $body);
+    $contentLength = strlen($content);
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Length: ' . $contentLength,
+        'Expect: 100-continue',
+        'Content-Type: ' . $contentType,
+    ));
+
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $content);
+
+}
+
+function make_api_post_file_request($url, $post_opts, $api_file_opt, $original_file_opt)
 {
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -113,8 +176,20 @@ function make_api_post_file_request($url, $post_opts, $file_opt, $filename)
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
     curl_setopt($ch, CURLOPT_POST, true);
-    $post_opts[$file_opt] = new CurlFile($_FILES[$filename]["tmp_name"], "text/plain", "upload");#'@'.realpath($_FILES[$filename]["tmp_name"]);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_opts);
+    $post_opts[$api_file_opt] = [];
+    $file_num = 0;
+    foreach($_FILES[$original_file_opt]["tmp_name"] as $tmp_name)
+    {
+        array_push($post_opts[$api_file_opt], '@'.realpath($tmp_name));
+            // new CurlFile($tmp_name), "text/plain", "upload");#'@'.realpath($_FILES[$filename]["tmp_name"]);
+        // $post_opts[$api_file_opt."[".$file_num."]"] = new CurlFile($tmp_name, "text/plain", "upload");#'@'.realpath($_FILES[$filename]["tmp_name"]);
+        // $file_num = $file_num + 1;
+    }
+    echo "<br />POST OPTS<br />";
+    var_dump($post_opts);
+    echo "<br /><br />";
+    // curl_setopt($ch, CURLOPT_POSTFIELDS, $post_opts);
+    curl_setopt_custom_postfields($ch, $post_opts);
     // var_dump($post_opts);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
