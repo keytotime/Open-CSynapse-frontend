@@ -38,10 +38,8 @@ function make_api_post_request($url)
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
     $_SESSION['id'] = $cookie_list;
-    // var_dump($data);
     curl_close($ch);
     unlink($cookie_file);
-    // echo($data);
     return $data;
 }
 
@@ -61,7 +59,6 @@ function make_api_get_request($url, $return_file = false, $filename="")
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
     $_SESSION['id'] = $cookie_list;
-    // var_dump($data);
     curl_close($ch);
     unlink($cookie_file);
     if ($return_file)
@@ -89,12 +86,9 @@ function make_api_post_array_request($url, $post_opts)
     curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt_custom_postfields($ch, $post_opts);
-    // curl_setopt($ch, CURLOPT_POSTFIELDS, $post_opts);
-    // var_dump($post_opts);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
     $_SESSION['id'] = $cookie_list;
-    // var_dump($data);
     curl_close($ch);
     unlink($cookie_file);
     return $data;
@@ -181,17 +175,11 @@ function make_api_post_file_request($url, $post_opts, $api_file_opt, $original_f
     foreach($_FILES[$original_file_opt]["tmp_name"] as $tmp_name)
     {
         array_push($post_opts[$api_file_opt], '@'.realpath($tmp_name));
-            // new CurlFile($tmp_name), "text/plain", "upload");#'@'.realpath($_FILES[$filename]["tmp_name"]);
-        // $post_opts[$api_file_opt."[".$file_num."]"] = new CurlFile($tmp_name, "text/plain", "upload");#'@'.realpath($_FILES[$filename]["tmp_name"]);
-        // $file_num = $file_num + 1;
     }
-    // curl_setopt($ch, CURLOPT_POSTFIELDS, $post_opts);
     curl_setopt_custom_postfields($ch, $post_opts);
-    // var_dump($post_opts);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
     $_SESSION['id'] = $cookie_list;
-    // var_dump($data);
     curl_close($ch);
     unlink($cookie_file);
     return $data;
@@ -203,7 +191,6 @@ function login($username,$password){
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    #$api_url = "https://csynapse.com/api";
     $url = $api_url . "/login?username=" . $username . "&password=" . $password;
     $json = make_api_post_request($url);
     $_SESSION['user'] = $username;
@@ -228,12 +215,23 @@ function create($name){
 }
 
 function logged_in(){
+    require '../Model/hidden/api.php';
     $loggedin = false;
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
     if (isset($_SESSION['id'])){
-        $loggedin = true;
+        $request = make_api_get_request($api_url."/getUsername");
+        $usernameResponse = json_decode($request);
+        if ($usernameResponse->{'status'} == "ok")
+        {
+            $loggedin = true;
+        }
+        else
+        {
+            session_destroy();
+            session_start();
+        }
     }
     return $loggedin;
 }
