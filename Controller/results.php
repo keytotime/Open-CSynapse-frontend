@@ -33,7 +33,7 @@ else if($plot == "3d"){
 
 $url = $api_url . "/getPoints?name=" . $csynapse;
 $json = make_api_get_request($url);
-$allobj = json_decode($json);
+$allobj = json_decode($json)->{'points'};
 
 
 $scatterdata = '[{';

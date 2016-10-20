@@ -19,6 +19,7 @@ if(!logged_in()){
 $table = '';
 $_SESSION['active'] = '';
 $position = 0;
+$username = json_decode(make_api_get_request($api_url."/getUsername"))->{'username'};
 
 $url = $api_url . "/csynapses";
 $json = make_api_get_request($url);

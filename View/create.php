@@ -43,7 +43,7 @@ echo $head . '
                                         </div>
                                         <br>
                                         <label class="control-label">Select File</label>
-                                        <input type="file" id="upload" name="upload" class="file" data-show-upload="false" required>
+                                        <input type="file" id="upload" name="upload[]" class="file" data-show-upload="false" multiple required>
                                         <p class="help-block">Files should be of type .csv with format "label,x,y,z\n". </p>
                                         
                                         <br><br>

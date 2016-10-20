@@ -185,9 +185,6 @@ function make_api_post_file_request($url, $post_opts, $api_file_opt, $original_f
         // $post_opts[$api_file_opt."[".$file_num."]"] = new CurlFile($tmp_name, "text/plain", "upload");#'@'.realpath($_FILES[$filename]["tmp_name"]);
         // $file_num = $file_num + 1;
     }
-    echo "<br />POST OPTS<br />";
-    var_dump($post_opts);
-    echo "<br /><br />";
     // curl_setopt($ch, CURLOPT_POSTFIELDS, $post_opts);
     curl_setopt_custom_postfields($ch, $post_opts);
     // var_dump($post_opts);
@@ -206,7 +203,7 @@ function login($username,$password){
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    $api_url = "https://csynapse.com/api";
+    #$api_url = "https://csynapse.com/api";
     $url = $api_url . "/login?username=" . $username . "&password=" . $password;
     $json = make_api_post_request($url);
     $_SESSION['user'] = $username;
