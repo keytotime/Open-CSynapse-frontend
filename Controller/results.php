@@ -15,7 +15,7 @@ if(!logged_in()){
     return;
 }
 
-$csynapse = $_GET['id'];
+$csynapse = urldecode($_GET['id']);
 
 if(isset($_GET['plot'])){
     $plot = $_GET['plot'];
@@ -50,7 +50,7 @@ if(strlen($scatterdata) > 2){
     $scatterdata = substr($scatterdata, 0, -2);
 }
 else{
-    $scatterdata = '[{name: "Unplottable", data:[]}';
+    $scatterdata = '[{name: "Not Available", data:[]}';
 }
 $scatterdata = $scatterdata .']';
 
@@ -69,7 +69,7 @@ if(!empty($allobj->{'testResults'})){
     foreach($allobj as $algo){
         $accuracydata = $accuracydata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"score"}*100 . "]},{";
         $speeddata = $speeddata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"time"} . "]},{";
-        $datatable = $datatable . "<tr><td>" . $algo->{"description"} . "</td><td>" . round($algo->{"score"}*100,2) . "%</td><td>". round($algo->{"time"},3) ."s</td></tr>";
+        $datatable = $datatable . "<tr><td><a href='classify.php?name=" . $csynapse . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td>" . round($algo->{"score"}*100,2) . "%</td><td>". round($algo->{"time"},3) ."s</td></tr>";
 
     }
 }

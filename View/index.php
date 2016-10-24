@@ -53,8 +53,8 @@ echo $head . '
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">' . $position . '</div>
-                                        <div>Ready</div>
+                                        <div class="huge">' . $num_classified . '</div>
+                                        <div>Classified</div>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@ echo $head . '
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="index.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">Update</span>
                                     <span class="pull-right"><i class="fa fa-refresh"></i></span>
@@ -126,13 +126,12 @@ echo $head . '
                         <div class="panel-heading">
                             <i class="fa fa-bell fa-fw"></i> Notifications Panel
                         </div>
-                        <!-- /.panel-heading -->' .
-                        // <div class="panel-body">
-                        //     <div class="list-group">
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">'. $notification . 
                         //         <a href="#" class="list-group-item">
-                        //             <i class="glyphicon glyphicon-ok"></i> Android Malware Detection Completed Training
-                        //             <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                        //             </span>
+                        //             <i class="glyphicon glyphicon-ok"></i> Classification of name has completed. 
+                        //             <span class="pull-right text-muted small"><em>4 minutes ago</em></span>
                         //         </a>
                         //         <a href="#" class="list-group-item">
                         //             <i class="glyphicon glyphicon-cog"></i> Traffic Congestion Training Started
@@ -174,9 +173,9 @@ echo $head . '
                         //             <span class="pull-right text-muted small"><em>2 Days Ago</em>
                         //             </span>
                         //         </a>
-                        //     </div>
-                        //     <!-- /.list-group -->
-                            '<a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                            '</div>
+                            <!-- /.list-group -->
+                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>

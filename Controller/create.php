@@ -43,7 +43,7 @@ $buttons = "";
 
 foreach($allobj as $algo){
 	if($algo->{'type'} == 'supervised'){
-	    $buttons = $buttons . '<label class="btn btn-primary btn-lg col-lg-4 col-md-6 col-sm-12">
+	    $buttons = $buttons . '<label class="btn btn-primary col-lg-4 col-md-6 col-sm-12">
 	    <input type="checkbox" name="algorithm[]" value="' . $algo->{'algoId'} . '"> ' . $algo->{'name'} . '
 	    </label>';
 	}

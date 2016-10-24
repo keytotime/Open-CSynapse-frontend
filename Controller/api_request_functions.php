@@ -2,6 +2,8 @@
 
 function return_file($data, $filename)
 {
+    $data = json_decode($data);
+    $data = $data->{'classified_data'};
     $tmp_file = tempnam("/tmp", "tmp_download");
     $tmp_file_d = fopen($tmp_file, "w") or die("Unable to open temporary download file!");
     fwrite($tmp_file_d, $data);
@@ -210,8 +212,9 @@ function register($username,$password){
 function create($name){
     require '../Model/hidden/api.php';
     
-    $url = $api_url . "/create?name=" . $name;
-    $json = make_api_post_request($url);
+    $url = $api_url . "/create";
+    $_POST['name'] = $name;
+    $json = make_api_post_array_request($url, $_POST);
 }
 
 function logged_in(){

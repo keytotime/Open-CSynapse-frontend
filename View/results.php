@@ -70,7 +70,7 @@ echo $head . '
                             <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
+                                        View
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
@@ -150,14 +150,15 @@ echo $head . '
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <!-- Tables - Use for reference -->
     <script>
     $(document).ready(function() {
         $(\'#datatable\').DataTable({
                 "searching": false,
                 responsive: true,
                 paging: false,
-                "bInfo": false
+                "bInfo": false,
+                "order": [[ 2, "asc" ]]
         });
     });
     </script>

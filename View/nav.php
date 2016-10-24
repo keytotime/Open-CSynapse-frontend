@@ -33,10 +33,10 @@ $nav = '<nav class="navbar navbar-default navbar-static-top" role="navigation" s
                                 <div>
                                     <strong>CSynapse</strong>
                                     <span class="pull-right text-muted">
-                                        <em>10/3/2016</em>
+                                        <em>10/21/2016</em>
                                     </span>
                                 </div>
-                                <div>Thank you for participating in the CSynapse alpha. We appriciate your help and feedback.</div>
+                                <div>Thank you for participating in the CSynapse closed beta. We appriciate your help and feedback.</div>
                             </a>
                         </li>'.
                         // <li class="divider"></li>
@@ -111,8 +111,8 @@ $nav = '<nav class="navbar navbar-default navbar-static-top" role="navigation" s
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>'
-                    // <ul class="dropdown-menu dropdown-alerts">
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">' . $_SESSION['notifications']
                     //     <li>
                     //         <a href="#">
                     //             <div>
@@ -158,16 +158,16 @@ $nav = '<nav class="navbar navbar-default navbar-static-top" role="navigation" s
                     //         </a>
                     //     </li>
                     //     <li class="divider"></li>
-                    //     <li>
-                    //         <a class="text-center" href="/index.php">
-                    //             <strong>See All Alerts</strong>
-                    //             <i class="fa fa-angle-right"></i>
-                    //         </a>
-                    //     </li>
-                    // </ul>
-                    // <!-- /.dropdown-alerts -->
+                .'<li>
+                    <a class="text-center" href="/index.php">
+                        <strong>See All Alerts</strong>
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </li>
+                </ul>
+                <!-- /.dropdown-alerts -->
 
-                .'</li>
+                </li>
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
