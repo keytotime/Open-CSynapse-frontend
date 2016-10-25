@@ -29,6 +29,8 @@ function make_api_post_request($url)
         session_start();
     }
     $cookie_text = $_SESSION['id'][0];
+    $url = str_replace(" ", "%20", $url);
+    echo $url;
     $ch = curl_init($url);
     $cookie_file = tempnam("/tmp", "user_cookie");
     $cookie_file_d = fopen($cookie_file, "w") or die("Unable to open temporary cookie file!");
@@ -51,6 +53,7 @@ function make_api_get_request($url, $return_file = false, $filename="")
         session_start();
     }
     $cookie_text = $_SESSION['id'][0];
+    $url = str_replace(" ", "%20", $url);
     $ch = curl_init($url);
     $cookie_file = tempnam("/tmp", "user_cookie");
     $cookie_file_d = fopen($cookie_file, "w") or die("Unable to open temporary cookie file!");
@@ -79,6 +82,7 @@ function make_api_post_array_request($url, $post_opts)
         session_start();
     }
     $cookie_text = $_SESSION['id'][0];
+    $url = str_replace(" ", "%20", $url);
     $ch = curl_init($url);
     $cookie_file = tempnam("/tmp", "user_cookie");
     $cookie_file_d = fopen($cookie_file, "w") or die("Unable to open temporary cookie file!");
@@ -164,6 +168,7 @@ function make_api_post_file_request($url, $post_opts, $api_file_opt, $original_f
         session_start();
     }
     $cookie_text = $_SESSION['id'][0];
+    $url = str_replace(" ", "%20", $url);
     $ch = curl_init($url);
     $cookie_file = tempnam("/tmp", "user_cookie");
     $cookie_file_d = fopen($cookie_file, "w") or die("Unable to open temporary cookie file!");
@@ -177,6 +182,13 @@ function make_api_post_file_request($url, $post_opts, $api_file_opt, $original_f
     foreach($_FILES[$original_file_opt]["tmp_name"] as $tmp_name)
     {
         array_push($post_opts[$api_file_opt], '@'.realpath($tmp_name));
+    }
+    foreach($_FILES[$original_file_opt]["name"] as $name)
+    {
+        if (preg_match(".*?\.zip$", $name) == 1)
+        {
+            $_POST["zipped"] = "true";
+        }
     }
     curl_setopt_custom_postfields($ch, $post_opts);
     $data = curl_exec($ch);
