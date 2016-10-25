@@ -9,8 +9,6 @@ CSynapse
 require '../Model/hidden/api.php';
 require '../Controller/api_request_functions.php';
 
-echo('attempt');
-
 if(!logged_in()){
     header("Location: login.php");
 }

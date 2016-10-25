@@ -160,7 +160,7 @@ $nav = '<nav class="navbar navbar-default navbar-static-top" role="navigation" s
                     //     <li class="divider"></li>
                 .'<li>
                     <a class="text-center" href="/index.php">
-                        <strong>See All Alerts</strong>
+                        <strong>See All</strong>
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </li>

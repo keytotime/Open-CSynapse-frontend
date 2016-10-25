@@ -90,10 +90,10 @@ foreach($allobj as $csynapse){
     foreach($csynapse as $item){     
         foreach($item as $Classified){
             $num_classified += 1;
-            $notification .= '<a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=txt" class="list-group-item">
+            $notification .= '<a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=csv" class="list-group-item">
                 <i class="glyphicon glyphicon-ok"></i> Classification of '. $Classified->{'datasetName'} .' has completed. 
                 <span class="pull-right text-muted small"><em>4 minutes ago</em></span></a>';
-            $_SESSION['notifications'] .= '<li><a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=txt"><div>
+            $_SESSION['notifications'] .= '<li><a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=csv"><div>
                 <i class="glyphicon glyphicon-ok"></i> ' . $Classified->{'datasetName'} . ' Completed
                 <span class="pull-right text-muted small">4 minutes ago</span>
                 </div></a></li><li class="divider"></li>';

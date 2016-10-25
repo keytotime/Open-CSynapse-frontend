@@ -24,7 +24,7 @@ echo $head . '
                 <div class="col-lg-8 col-md-10 col-sm-12 col-xsm-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Choose Algorithms and Upload Dataset 
+                            Give your classification a name and upload unlabled data.
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -39,7 +39,7 @@ echo $head . '
                                         </div>
                                         <label class="control-label">Select File</label>
                                         <input type="file" id="upload" name="upload[]" class="file" data-show-upload="false" multiple required>
-                                        <p class="help-block">Files should be of type .csv with format "label,x,y,z\n". </p>
+                                        <p class="help-block">Files should be of type .csv with format "x,y,z\n". </p>
                                         
                                         <br><br>
                                         <button type="submit" value="submit" class="btn btn-primary">Classify</button>

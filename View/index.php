@@ -175,7 +175,7 @@ echo $head . '
                         //         </a>
                             '</div>
                             <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                            <a href="#" class="btn btn-default btn-block">View All</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>
