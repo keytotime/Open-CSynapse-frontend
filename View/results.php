@@ -61,6 +61,7 @@ echo $head . '
                             </div>
                             <!-- /.panel -->
                         </div>
+                        <div>' . $regressionList . '</div>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -140,7 +141,6 @@ echo $head . '
     <script src="../js/runspeed.js"></script>'
     . $plotdisplay . 
     '
-
 
     <!-- DataTables JavaScript -->
     <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
