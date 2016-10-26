@@ -168,7 +168,7 @@ function make_api_post_file_request($url, $post_opts, $api_file_opt, $original_f
         session_start();
     }
     $cookie_text = $_SESSION['id'][0];
-    $url = str_replace(" ", "%20", $url);
+    //$url = str_replace(" ", "%20", $url);
     $ch = curl_init($url);
     $cookie_file = tempnam("/tmp", "user_cookie");
     $cookie_file_d = fopen($cookie_file, "w") or die("Unable to open temporary cookie file!");

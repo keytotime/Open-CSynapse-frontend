@@ -93,7 +93,33 @@ else{
 }
 $accuracydata = $accuracydata .']';
 
+// Get regression Data
+$url = $api_url . "/regressionData?name=" . $csynapse;
+$json = make_api_get_request($url);
+$regressionInfo = json_decode($json);
+$regressionList = '';
+if($regressionInfo->{'status'} === 'ok'){
+    $regressionList = '<div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Correlations
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body"><table width="100%" class="table table-striped table-bordered table-hover" id="datatable"><tr><th>Correlation</th><th>R</th><th>R-Squared</th><th>P</th></tr>';
+                                    
+    $lastPart = '</table></div>
+                    <!-- /.panel-body -->
+                    </div>
+                        <!-- /.panel -->
+                    </div>';
 
+    $regList = $regressionInfo->{'regressionData'};
+    foreach($regList as $regData){
+        $result = '<tr><td>' . $regData->{'h1'}  . ' and ' . $regData->{'h2'} . '</td><td>'.round($regData->{'r'}, 2) . '</td><td>' . round($regData->{'rSquared'},2) . '</td><td>'.round($regData->{'p'},2).'</td></tr>';
+        $regressionList = $regressionList . $result;
+    }
+    $regressionList = $regressionList . $lastPart;
+}
 require '../View/head.php';
 require '../View/nav.php';
 require '../View/results.php';
