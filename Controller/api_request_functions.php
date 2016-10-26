@@ -82,7 +82,7 @@ function make_api_post_array_request($url, $post_opts)
         session_start();
     }
     $cookie_text = $_SESSION['id'][0];
-    $url = str_replace(" ", "%20", $url);
+    #$url = str_replace(" ", "%20", $url);
     $ch = curl_init($url);
     $cookie_file = tempnam("/tmp", "user_cookie");
     $cookie_file_d = fopen($cookie_file, "w") or die("Unable to open temporary cookie file!");
@@ -168,7 +168,7 @@ function make_api_post_file_request($url, $post_opts, $api_file_opt, $original_f
         session_start();
     }
     $cookie_text = $_SESSION['id'][0];
-    $url = str_replace(" ", "%20", $url);
+    #$url = str_replace(" ", "%20", $url);
     $ch = curl_init($url);
     $cookie_file = tempnam("/tmp", "user_cookie");
     $cookie_file_d = fopen($cookie_file, "w") or die("Unable to open temporary cookie file!");
@@ -185,11 +185,15 @@ function make_api_post_file_request($url, $post_opts, $api_file_opt, $original_f
     }
     foreach($_FILES[$original_file_opt]["name"] as $name)
     {
-        if (preg_match(".*?\.zip$", $name) == 1)
+        echo "Checking ". $name."<br />";
+        $check_match = preg_match("/.*?\.zip$/i", $name);
+        var_dump($check_match);
+        if ($check_match == 1)
         {
-            $_POST["zipped"] = "true";
+            $post_opts["zipped"] = "true";
         }
     }
+    var_dump($post_opts);
     curl_setopt_custom_postfields($ch, $post_opts);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
