@@ -33,26 +33,33 @@ else if($plot == "3d"){
 
 $url = $api_url . "/getPoints?name=" . $csynapse;
 $json = make_api_get_request($url);
-$allobj = json_decode($json)->{'points'};
+$scatterdata = '';
 
+if(!strpos($json,"Error: 500 Internal Server Error")){
+    $allobj = json_decode($json)->{'points'};
 
-$scatterdata = '[{';
+    $scatterdata = '[{';
 
-if(!empty($allobj->{'3'})){
+    if(!empty($allobj->{'3'})){
 
-    $allobj = $allobj->{'3'};
-    foreach($allobj as $key => $value){
-        $scatterdata = $scatterdata . "name: '" . $key . "', data: " . json_encode($value) . "},{";
+        $allobj = $allobj->{'3'};
+        foreach($allobj as $key => $value){
+            $scatterdata = $scatterdata . "name: '" . $key . "', data: " . json_encode($value) . "},{";
+        }
     }
+
+    if(strlen($scatterdata) > 2){
+        $scatterdata = substr($scatterdata, 0, -2);
+    }
+    else{
+        $scatterdata = '[{name: "Not Available", data:[]}';
+    }
+    $scatterdata = $scatterdata .']';
 }
 
-if(strlen($scatterdata) > 2){
-    $scatterdata = substr($scatterdata, 0, -2);
-}
-else{
-    $scatterdata = '[{name: "Not Available", data:[]}';
-}
-$scatterdata = $scatterdata .']';
+
+
+
 
 
 
@@ -96,9 +103,10 @@ $accuracydata = $accuracydata .']';
 // Get regression Data
 $url = $api_url . "/regressionData?name=" . $csynapse;
 $json = make_api_get_request($url);
-$regressionInfo = json_decode($json);
 $regressionList = '';
-if($regressionInfo->{'status'} === 'ok'){
+if(!strpos($json,"Error: 500 Internal Server Error")){
+    $regressionInfo = json_decode($json);
+
     $regressionList = '<div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">

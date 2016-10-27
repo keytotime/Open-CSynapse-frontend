@@ -35,14 +35,14 @@ if(!empty($allobj->{'csynapses'})){
         $_SESSION['active'] = $_SESSION['active'] . "<li><a href='/Controller/results.php?id=" . $name . "'>" . $name . "</a></li>";
         $type = "Vector";
         $size = "X";
-        $status = "Unknown";
+        $status = "Ready";
         $position = $position + 1;
         $table = $table . "<tr>
-                    <td>" . $position . "</td>
+                    <!--<td>" . $position . "</td>-->
                     <td><a href=\"/Controller/results.php?id=" . $name . "\">" . $name . "</a></td>
                     <td>" . $status . "</td>
-                    <td>" . $type . "</td>
-                    <td>" . $size . "</td>
+                    <!--<td>" . $type . "</td>-->
+                    <!--<td>" . $size . "</td>-->
                 </tr>";
     }
 }
@@ -78,11 +78,11 @@ $allobj = $allobj->{'all_classified'};
 // if(!empty($allobj)){
 //     foreach($notifications as $noti){
 //                 $notification .= '<a href="#" class="list-group-item">
-//                     <i class="glyphicon glyphicon-ok"></i> Classification of '. key($noti) .' has completed. 
+//                     <i class="glyphicon glyphicoftablen-ok"></i> Classification of '. key($noti) .' has completed. 
 //                     <span class="pull-right text-muted small"><em>' . $noti['timeStamp'] . '</em></span></a>';
 //                 $nav_notification .= '<li><a href="#"><div>
 //                     <i class="glyphicon glyphicon-ok"></i> Dataset Completed
-//                     <span class="pull-right text-muted small">4 minutes ago</span>';
+//                     <span class="pull-right text-muted small">Now</span>';
 //     }
 // }
 
@@ -95,7 +95,7 @@ foreach($allobj as $csynapse){
                 <span class="pull-right text-muted small"><em>4 minutes ago</em></span></a>';
             $_SESSION['notifications'] .= '<li><a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=csv"><div>
                 <i class="glyphicon glyphicon-ok"></i> ' . $Classified->{'datasetName'} . ' Completed
-                <span class="pull-right text-muted small">4 minutes ago</span>
+                <span class="pull-right text-muted small">Now</span>
                 </div></a></li><li class="divider"></li>';
         }        
     }

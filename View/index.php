@@ -102,11 +102,11 @@ echo $head . '
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <!--<th>#</th>-->
                                             <th>Name</th>
                                             <th>Status</th>
-                                            <th>Data Type</th>
-                                            <th>Algorithms</th>
+                                            <!--<th>Data Type</th>-->
+                                            <!--<th>Algorithms</th>-->
                                             <!--Amount of data -->
                                         </tr>
                                     </thead>
