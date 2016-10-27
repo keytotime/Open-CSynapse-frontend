@@ -16,6 +16,7 @@ if(!logged_in()){
 }
 
 $csynapse = $_GET['id'];
+echo($csynapse);
 
 if(isset($_GET['plot'])){
     $plot = $_GET['plot'];
