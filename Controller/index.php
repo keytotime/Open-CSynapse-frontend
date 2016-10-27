@@ -32,7 +32,7 @@ $_SESSION['notifications'] = '';
 if(!empty($allobj->{'csynapses'})){
     
     foreach($allobj->{'csynapses'} as $name){
-        $_SESSION['active'] = $_SESSION['active'] . "<li><a href='/Controller/results.php?id=" . $name . "'>" . $name . "</a></li>";
+        $_SESSION['active'] = $_SESSION['active'] . "<li><a href='/Controller/results.php?id=" . urlencode($name) . "'>" . $name . "</a></li>";
         $type = "Vector";
         $size = "X";
         $status = "Ready";

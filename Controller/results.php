@@ -16,7 +16,7 @@ if(!logged_in()){
 }
 
 $csynapse = $_GET['id'];
-echo($csynapse);
+
 
 if(isset($_GET['plot'])){
     $plot = $_GET['plot'];
@@ -77,12 +77,12 @@ if(!empty($allobj->{'testResults'})){
     foreach($allobj as $algo){
         $accuracydata = $accuracydata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"score"}*100 . "]},{";
         $speeddata = $speeddata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"time"} . "]},{";
-        $datatable = $datatable . "<tr><td><a href='classify.php?name=" . $csynapse . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td>" . round($algo->{"score"}*100,2) . "%</td><td>". round($algo->{"time"},3) ."s</td></tr>";
+        $datatable = $datatable . "<tr><td><a href='classify.php?name=" . urlencode($csynapse) . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td>" . round($algo->{"score"}*100,2) . "%</td><td>". round($algo->{"time"},3) ."s</td></tr>";
 
     }
 }
 
-$datatable = $datatable . "</tbody></table><a href='add.php?csynapse=" . $csynapse . "'>Add more algorithms...</a>";
+$datatable = $datatable . "</tbody></table><a href='add.php?csynapse=" . urlencode($csynapse) . "'>Add more algorithms...</a>";
 
 
 if(strlen($speeddata) > 2){
