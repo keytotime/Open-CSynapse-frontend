@@ -15,7 +15,7 @@ if(!logged_in()){
     return;
 }
 
-$csynapse = urldecode($_GET['id']);
+$csynapse = $_GET['id'];
 
 if(isset($_GET['plot'])){
     $plot = $_GET['plot'];
