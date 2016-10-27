@@ -16,9 +16,9 @@ if(!logged_in()){
 $gets='';
 if(isset($_GET['name']) && isset($_GET['algorithm'])){
 	$gets = "?name=";
-	$gets .= $_GET['name'];
+	$gets .= urlencode($_GET['name']);
 	$gets .= "&algorithm=";
-	$gets .= $_GET['algorithm'];
+	$gets .= urlencode($_GET['algorithm']);
 }
 else{
 	header("Location: login.php");
