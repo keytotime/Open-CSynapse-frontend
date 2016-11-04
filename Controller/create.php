@@ -27,7 +27,7 @@ if(isset($_POST['name'])){
 	$algorithms = $_POST['algorithm'];
 
 	foreach($algorithms as $algorithm){
-		$url = $url . "&algorithm=" . $algorithm;
+		$url = $url . "&algorithm={\"algorithm\":\"" . $algorithm . "\"}";
 	}
 	make_api_post_request($url);
 
