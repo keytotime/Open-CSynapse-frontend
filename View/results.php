@@ -66,9 +66,9 @@ echo $head . '
                 </div>
                 <div class="col-lg-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div id="scatterHeader" class="panel-heading">
                             Plot of Input Data
-                            <div class="pull-right">
+                            <div id="multi-dimension" class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                                         View
@@ -136,6 +136,8 @@ echo $head . '
     var accuracydata = ' . $accuracydata . ';
     var speeddata = ' . $speeddata . ';
     var scatterdata = ' . $scatterdata . ';
+    var headerPoints = ' . $headerPoints . ';
+    var labels = ' . $labels . ';
     </script>
     <script src="../js/accuracy.js"></script>
     <script src="../js/runspeed.js"></script>'

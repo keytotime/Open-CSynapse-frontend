@@ -35,9 +35,12 @@ else if($plot == "3d"){
 $url = $api_url . "/getPoints?name=" . $csynapse;
 $json = make_api_get_request($url);
 $scatterdata = '';
+$headerPoints = '';
+$labels = '';
 
 if(!strpos($json,"Error: 500 Internal Server Error")){
-    $allobj = json_decode($json)->{'points'};
+    $jsonDecoded = json_decode($json);
+    $allobj = $jsonDecoded ->{'points'};
 
     $scatterdata = '[{';
 
@@ -56,6 +59,12 @@ if(!strpos($json,"Error: 500 Internal Server Error")){
         $scatterdata = '[{name: "Not Available", data:[]}';
     }
     $scatterdata = $scatterdata .']';
+
+
+    if(isset($jsonDecoded ->{'headerPoints'})){
+        $headerPoints = json_encode($jsonDecoded ->{'headerPoints'});
+        $labels = json_encode($jsonDecoded ->{'labels'});
+    }
 }
 
 
