@@ -84,7 +84,7 @@ echo $head . '
                             </div>
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <div id="scatter-body" class="panel-body">
                             <div id="scatterplot'. $plot .'"></div>
                         </div>
                         <!-- /.panel-body -->
@@ -138,6 +138,7 @@ echo $head . '
     var scatterdata = ' . $scatterdata . ';
     var headerPoints = ' . $headerPoints . ';
     var labels = ' . $labels . ';
+    var regressionData = ' . $regressionData . ';
     </script>
     <script src="../js/accuracy.js"></script>
     <script src="../js/runspeed.js"></script>'

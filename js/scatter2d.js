@@ -110,7 +110,36 @@ $(function() {
         });
 
         // Build selector menus if header points exist
-        if (headerPoints !== '' && labels != '') {
+        if (headerPoints !== '' && labels != '' && regressionData != '') {
+
+            console.log(regressionData);
+
+            function addToLookup(d, keyOne, keyTwo, data) {
+                if (d.hasOwnProperty(keyOne)) {
+                    d[keyOne][keyTwo] = data;
+                } else {
+                    var toAdd = {};
+                    toAdd[keyTwo] = data;
+                    d[keyOne] = toAdd;
+                }
+                if (d.hasOwnProperty(keyTwo)) {
+                    d[keyTwo][keyOne] = data;
+                } else {
+                    var toAdd = {};
+                    toAdd[keyOne] = data;
+                    d[keyTwo] = toAdd;
+                }
+            }
+
+            function roundToThree(val){
+                return Math.round(val * 1000) / 1000;
+            }
+
+            var regressionLookup = {};
+            // Double sided lookup for regression data
+            regressionData.forEach(function(d) {
+                addToLookup(regressionLookup, d.h1, d.h2, { p: roundToThree(d.p), r: roundToThree(d.r), rSquared: roundToThree(d.rSquared) });
+            });
 
             var featureMenusOpen = false;
 
@@ -137,6 +166,7 @@ $(function() {
             });
 
             var menu = ['<div class="pull-left graph-menu">',
+                    'X-Axis:',
                     '<div class="btn-group">',
                     '<button  type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">',
                     '<span id="xAxis">' + firstHeader + '</span>',
@@ -151,8 +181,12 @@ $(function() {
                 return '<li><a class="y-select" href="javascript:void(0)">' + d.header + '</a></li>';
             });
 
+            // get initial regression data
+            var first = regressionLookup[firstHeader][secondHeader];
 
-            var menuTwo = ['<div class="pull-left graph-menu">',
+            var initReg = ' r: ' + first.r + ' rSquared:' + first.rSquared + ' p:' + first.p;
+            var menuTwo = ['<div class="pull-left graph-menu left-space">',
+                    'Y-Axis:',
                     '<div class="btn-group">',
                     '<button  type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">',
                     '<span id="yAxis">' + secondHeader + '</span>',
@@ -160,7 +194,7 @@ $(function() {
                     '</button>',
                     '<ul class="dropdown-menu pull-right" role="menu">'
                 ].concat(headerListTwo)
-                .concat(['</ul>', '</div>']);
+                .concat(['</ul>', '<span class="left-space" id="regInfo">' + initReg + '</span></div>']);
 
             // Build easier look up
             var headers = {};
@@ -195,8 +229,8 @@ $(function() {
                     if (!featureMenusOpen) {
                         $('#multi-dimension').hide();
                         featureMenusOpen = true;
-                        $('#scatterplot2d').append(menu.join('\n'));
-                        $('#scatterplot2d').append(menuTwo.join('\n'));
+                        $('#scatter-body').append(menu.join('\n'));
+                        $('#scatter-body').append(menuTwo.join('\n'));
 
                         // Change graph data to default choices
                         var xData = headers[firstHeader];
@@ -221,11 +255,18 @@ $(function() {
                         $('.y-select').click(function(value) {
                             var option = $(value.target).text();
                             var newY = headers[option];
-                            var currentX = headers[$('#xAxis').text()];
+                            var xText = $('#xAxis').text();
+                            var currentX = headers[xText];
+
+                            var regressionInfo = '';
+                            if(option !== xText){
+                                var newRegInfo = regressionLookup[option][xText];
+                                regressionInfo = ' r: ' + newRegInfo.r + ' rSquared:' + newRegInfo.rSquared + ' p:' + newRegInfo.p;
+                            }
 
                             var pointsData = getPointsFromArrays(currentX, newY, labels);
-
                             updateSeries(pointsData);
+
 
                             // update y axis
                             chart.yAxis[0].update({
@@ -235,14 +276,24 @@ $(function() {
                             });
 
                             $('#yAxis').text(option);
+                            $('#regInfo').text(regressionInfo);
                         });
 
                         $('.x-select').click(function(value) {
                             var option = $(value.target).text();
+                            var yText = $('#yAxis').text();
+
                             var newX = headers[option];
-                            var currentY = headers[$('#yAxis').text()];
+                            var currentY = headers[yText];
+
+                            var regressionInfo = '';
+                            if(option !== yText){
+                                var newRegInfo = regressionLookup[option][yText];
+                                regressionInfo = ' r: ' + newRegInfo.r + ' rSquared:' + newRegInfo.rSquared + ' p:' + newRegInfo.p;
+                            }
 
                             var pointsData = getPointsFromArrays(newX, currentY, labels);
+                            var regressionInfo = ' r: ' + first.r + ' rSquared:' + first.rSquared + ' p:' + first.p;
 
                             updateSeries(pointsData);
 
@@ -254,6 +305,7 @@ $(function() {
                             });
 
                             $('#xAxis').text(option);
+                            $('#regInfo').text(regressionInfo);
                         });
                     }
                 }

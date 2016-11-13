@@ -35,8 +35,8 @@ else if($plot == "3d"){
 $url = $api_url . "/getPoints?name=" . $csynapse;
 $json = make_api_get_request($url);
 $scatterdata = '';
-$headerPoints = '';
-$labels = '';
+$headerPoints = json_encode('');
+$labels = json_encode('');
 
 if(!strpos($json,"Error: 500 Internal Server Error")){
     $jsonDecoded = json_decode($json);
@@ -113,9 +113,10 @@ $accuracydata = $accuracydata .']';
 // Get regression Data
 $url = $api_url . "/regressionData?name=" . $csynapse;
 $json = make_api_get_request($url);
+$regJson = json_decode($json); 
+$regressionData = json_encode('');
 $regressionList = '';
-if(!strpos($json,"Error: 500 Internal Server Error")){
-    $regressionInfo = json_decode($json);
+if(strcmp($regJson->{'status'},'error') !== 0) {
 
     $regressionList = '<div class="col-lg-12">
                             <div class="panel panel-default">
@@ -131,7 +132,8 @@ if(!strpos($json,"Error: 500 Internal Server Error")){
                         <!-- /.panel -->
                     </div>';
 
-    $regList = $regressionInfo->{'regressionData'};
+    $regList = $regJson->{'regressionData'};
+    $regressionData = json_encode($regList);
     foreach($regList as $regData){
         $result = '<tr><td>' . $regData->{'h1'}  . ' and ' . $regData->{'h2'} . '</td><td>'.round($regData->{'r'}, 2) . '</td><td>' . round($regData->{'rSquared'},2) . '</td><td>'.round($regData->{'p'},2).'</td></tr>';
         $regressionList = $regressionList . $result;
