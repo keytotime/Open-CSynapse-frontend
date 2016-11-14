@@ -13,10 +13,41 @@ if(!logged_in()){
     header("Location: login.php");
 }
 
+$url = $api_url . "/algorithms";
+$json = make_api_get_request($url);
+$allobj = json_decode($json);
+$allobj = $allobj->{'algorithms'};
+
 
 //If name is given, add algorithms requested to CSynapse.
 if(isset($_POST['name'])){
-	// If upload data is given, create new CSynapse with it. 
+	$map;
+
+	foreach($allobj as $algo){
+		$keys = [];
+		foreach($algo->{'paramInfo'} as $param){
+			array_push($keys, $param->{'name'});
+		}
+		$map[$algo->{'algoId'}] = $keys;
+	}
+
+	
+	// var_dump($map);
+	$algojson = [];
+	
+
+	foreach($_POST['algorithm'] as $algo){
+		$params = [];
+		$alg = [];
+		$alg['algorithm'] = $algo;
+		foreach($map[$algo] as $param){
+			$params[$param] = array_shift($_POST[$param]);
+		}
+		$alg['params'] = $params;
+		array_push($algojson, $alg);
+
+	}
+
 	create($_POST['name']);
 
 	$url = $api_url . "/data";
@@ -24,21 +55,17 @@ if(isset($_POST['name'])){
 
 	$url = $api_url . "/test?name=" . $_POST['name'];
 
-	$algorithms = $_POST['algorithm'];
-
-	foreach($algorithms as $algorithm){
-		$url = $url . "&algorithm={\"algorithm\":\"" . $algorithm . "\"}";
+	foreach($algojson as $algorithm){
+		$algorithm = json_encode($algorithm);
+		$url = $url . "&algorithm=" . $algorithm;
 	}
 	make_api_post_request($url);
 
 	header("Location: /index.php");
 
-}
+	// var_dump($url);
 
-$url = $api_url . "/algorithms";
-$json = make_api_get_request($url);
-$allobj = json_decode($json);
-$allobj = $allobj->{'algorithms'};
+}
 
 $params = "";
 $style = "<style>
