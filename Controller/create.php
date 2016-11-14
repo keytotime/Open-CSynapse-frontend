@@ -17,23 +17,22 @@ if(!logged_in()){
 //If name is given, add algorithms requested to CSynapse.
 if(isset($_POST['name'])){
 	// If upload data is given, create new CSynapse with it. 
-	//create($_POST['name']);
+	create($_POST['name']);
 
-	//$url = $api_url . "/data";
-	//make_api_post_file_request($url, $_POST, "upload", "upload");
+	$url = $api_url . "/data";
+	make_api_post_file_request($url, $_POST, "upload", "upload");
 
-	//$url = $api_url . "/test?name=" . $_POST['name'];
+	$url = $api_url . "/test?name=" . $_POST['name'];
 
-	//$algorithms = $_POST['algorithm'];
+	$algorithms = $_POST['algorithm'];
 
-	// foreach($algorithms as $algorithm){
-	// 	$url = $url . "&algorithm={\"algorithm\":\"" . $algorithm . "\"}";
-	// }
-	// make_api_post_request($url);
+	foreach($algorithms as $algorithm){
+		$url = $url . "&algorithm={\"algorithm\":\"" . $algorithm . "\"}";
+	}
+	make_api_post_request($url);
 
-	// header("Location: /index.php");
+	header("Location: /index.php");
 
-	var_dump($_POST);
 }
 
 $url = $api_url . "/algorithms";
