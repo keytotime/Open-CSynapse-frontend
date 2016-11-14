@@ -130,7 +130,7 @@ else{
 $accuracydata = $accuracydata .']';
 
 // Get regression Data
-$url = $api_url . "/regressionData?limit=10&name=" . $csynapse;
+$url = $api_url . "/regressionData?&name=" . $csynapse;
 $json = make_api_get_request($url);
 $regJson = json_decode($json); 
 $regressionData = json_encode('');
@@ -153,9 +153,15 @@ if(strcmp($regJson->{'status'},'error') !== 0) {
 
     $regList = $regJson->{'regressionData'};
     $regressionData = json_encode($regList);
+
+    $count = 10;
     foreach($regList as $regData){
         $result = '<tr><td>' . $regData->{'h1'}  . ' and ' . $regData->{'h2'} . '</td><td>'.round($regData->{'r'}, 2) . '</td><td>' . round($regData->{'rSquared'},2) . '</td><td>'.round($regData->{'p'},2).'</td></tr>';
         $regressionList = $regressionList . $result;
+        $count = $count - 1;
+        if($count === 0){
+            break;
+        }
     }
     $regressionList = $regressionList . $lastPart;
 }
