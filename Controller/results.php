@@ -130,7 +130,7 @@ else{
 $accuracydata = $accuracydata .']';
 
 // Get regression Data
-$url = $api_url . "/regressionData?name=" . $csynapse;
+$url = $api_url . "/regressionData?limit=10&name=" . $csynapse;
 $json = make_api_get_request($url);
 $regJson = json_decode($json); 
 $regressionData = json_encode('');
@@ -140,7 +140,7 @@ if(strcmp($regJson->{'status'},'error') !== 0) {
     $regressionList = '<div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Correlations
+                                    10 Strongest Correlations
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body"><table width="100%" class="table table-striped table-bordered table-hover" id="datatable"><tr><th>Correlation</th><th>R</th><th>R-Squared</th><th>P</th></tr>';

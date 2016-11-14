@@ -267,7 +267,6 @@ $(function() {
                             var pointsData = getPointsFromArrays(currentX, newY, labels);
                             updateSeries(pointsData);
 
-
                             // update y axis
                             chart.yAxis[0].update({
                                 title: {
@@ -293,8 +292,6 @@ $(function() {
                             }
 
                             var pointsData = getPointsFromArrays(newX, currentY, labels);
-                            var regressionInfo = ' r: ' + first.r + ' rSquared:' + first.rSquared + ' p:' + first.p;
-
                             updateSeries(pointsData);
 
                             // update y axis
