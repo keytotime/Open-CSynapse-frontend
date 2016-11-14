@@ -80,18 +80,37 @@ $allobj = json_decode($json);
 $accuracydata = '[{';
 $speeddata = '[{';
 $datatable = '';
+$processing = false;
 if(!empty($allobj->{'testResults'})){
     
     $allobj = $allobj->{'testResults'};
     foreach($allobj as $algo){
-        $accuracydata = $accuracydata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"score"}*100 . "]},{";
-        $speeddata = $speeddata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"time"} . "]},{";
-        $datatable = $datatable . "<tr><td><a href='classify.php?name=" . urlencode($csynapse) . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td>" . round($algo->{"score"}*100,2) . "%</td><td>". round($algo->{"time"},3) ."s</td></tr>";
+        $datatable = $datatable . "<tr id='".$algo->{"id"}."_row'>";
+        if (strcmp($algo->{"status"}, "complete") == 0) {
+            $accuracydata = $accuracydata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"score"}*100 . "]},{";
+            $speeddata = $speeddata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"time"} . "]},{";
+            $datatable = $datatable . "<td><a href='classify.php?name=" . urlencode($csynapse) . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td><span id='".$algo->{"id"}."_accuracy'>" . round($algo->{"score"}*100,2) . "</span>%</td><td><span id='".$algo->{"id"}."_time'>". round($algo->{"time"},3) ."</span>s</td>";
+        }
+        elseif (strcmp($algo->{"status"}, "processing") == 0) {
+            $datatable = $datatable . "<td><a href='classify.php?name=" . urlencode($csynapse) . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td><span id='".$algo->{"id"}."_accuracy'>--</span></td><td><span id='".$algo->{"id"}."_time'>Processing</span></td>";
+            $processing = true;
+        }
+        else
+        {
+            $datatable = $datatable . "<td><a href='classify.php?name=" . urlencode($csynapse) . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td><span id='".$algo->{"id"}."_accuracy'>--</span></td><td><span id='".$algo->{"id"}."_time'>ERROR</span></td>";
+        }
+        $datatable = $datatable . "</tr>";
 
     }
 }
 
-$datatable = $datatable . "</tbody></table><a href='add.php?csynapse=" . urlencode($csynapse) . "'>Add more algorithms...</a>";
+$datatable = $datatable . "</tbody></table>";
+
+if ($processing) {
+    $datatable = $datatable . "The page may need to be refreshed to see updated values<br />";
+}
+
+$datatable = $datatable . "<a href='add.php?csynapse=" . urlencode($csynapse) . "'>Add more algorithms...</a>";
 
 
 if(strlen($speeddata) > 2){
@@ -111,7 +130,7 @@ else{
 $accuracydata = $accuracydata .']';
 
 // Get regression Data
-$url = $api_url . "/regressionData?name=" . $csynapse;
+$url = $api_url . "/regressionData?&name=" . $csynapse;
 $json = make_api_get_request($url);
 $regJson = json_decode($json); 
 $regressionData = json_encode('');
@@ -121,7 +140,7 @@ if(strcmp($regJson->{'status'},'error') !== 0) {
     $regressionList = '<div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Correlations
+                                    10 Strongest Correlations
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body"><table width="100%" class="table table-striped table-bordered table-hover" id="datatable"><tr><th>Correlation</th><th>R</th><th>R-Squared</th><th>P</th></tr>';
@@ -134,9 +153,15 @@ if(strcmp($regJson->{'status'},'error') !== 0) {
 
     $regList = $regJson->{'regressionData'};
     $regressionData = json_encode($regList);
+
+    $count = 10;
     foreach($regList as $regData){
         $result = '<tr><td>' . $regData->{'h1'}  . ' and ' . $regData->{'h2'} . '</td><td>'.round($regData->{'r'}, 2) . '</td><td>' . round($regData->{'rSquared'},2) . '</td><td>'.round($regData->{'p'},2).'</td></tr>';
         $regressionList = $regressionList . $result;
+        $count = $count - 1;
+        if($count === 0){
+            break;
+        }
     }
     $regressionList = $regressionList . $lastPart;
 }
