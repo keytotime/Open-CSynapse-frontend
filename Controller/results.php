@@ -80,18 +80,37 @@ $allobj = json_decode($json);
 $accuracydata = '[{';
 $speeddata = '[{';
 $datatable = '';
+$processing = false;
 if(!empty($allobj->{'testResults'})){
     
     $allobj = $allobj->{'testResults'};
     foreach($allobj as $algo){
-        $accuracydata = $accuracydata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"score"}*100 . "]},{";
-        $speeddata = $speeddata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"time"} . "]},{";
-        $datatable = $datatable . "<tr><td><a href='classify.php?name=" . urlencode($csynapse) . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td>" . round($algo->{"score"}*100,2) . "%</td><td>". round($algo->{"time"},3) ."s</td></tr>";
+        $datatable = $datatable . "<tr id='".$algo->{"id"}."_row'>";
+        if (strcmp($algo->{"status"}, "complete") == 0) {
+            $accuracydata = $accuracydata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"score"}*100 . "]},{";
+            $speeddata = $speeddata . "name: '" . $algo->{"description"} . "', data: [" . $algo->{"time"} . "]},{";
+            $datatable = $datatable . "<td><a href='classify.php?name=" . urlencode($csynapse) . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td><span id='".$algo->{"id"}."_accuracy'>" . round($algo->{"score"}*100,2) . "</span>%</td><td><span id='".$algo->{"id"}."_time'>". round($algo->{"time"},3) ."</span>s</td>";
+        }
+        elseif (strcmp($algo->{"status"}, "processing") == 0) {
+            $datatable = $datatable . "<td><a href='classify.php?name=" . urlencode($csynapse) . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td><span id='".$algo->{"id"}."_accuracy'>--</span></td><td><span id='".$algo->{"id"}."_time'>Processing</span></td>";
+            $processing = true;
+        }
+        else
+        {
+            $datatable = $datatable . "<td><a href='classify.php?name=" . urlencode($csynapse) . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td><span id='".$algo->{"id"}."_accuracy'>--</span></td><td><span id='".$algo->{"id"}."_time'>ERROR</span></td>";
+        }
+        $datatable = $datatable . "</tr>";
 
     }
 }
 
-$datatable = $datatable . "</tbody></table><a href='add.php?csynapse=" . urlencode($csynapse) . "'>Add more algorithms...</a>";
+$datatable = $datatable . "</tbody></table>";
+
+if ($processing) {
+    $datatable = $datatable . "The page may need to be refreshed to see updated values<br />";
+}
+
+$datatable = $datatable . "<a href='add.php?csynapse=" . urlencode($csynapse) . "'>Add more algorithms...</a>";
 
 
 if(strlen($speeddata) > 2){

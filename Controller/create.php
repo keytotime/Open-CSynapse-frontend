@@ -31,7 +31,7 @@ if(isset($_POST['name'])){
 	}
 	make_api_post_request($url);
 
-	header("Location: /index.php");
+	header("Location: results.php?id=". $_POST['name']);
 
 }
 
