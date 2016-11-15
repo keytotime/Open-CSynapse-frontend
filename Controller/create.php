@@ -18,7 +18,6 @@ $json = make_api_get_request($url);
 $allobj = json_decode($json);
 $allobj = $allobj->{'algorithms'};
 
-
 //If name is given, add algorithms requested to CSynapse.
 if(isset($_POST['name'])){
 	$map;
@@ -59,11 +58,13 @@ if(isset($_POST['name'])){
 		$algorithm = json_encode($algorithm);
 		$url = $url . "&algorithm=" . $algorithm;
 	}
+
+	error_log($url);
+
 	make_api_post_request($url);
 
 	header("Location: results.php?id=". $_POST['name']);
 
-	// var_dump($url);
 
 }
 

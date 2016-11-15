@@ -6,7 +6,7 @@ cs4000 - Capstone
 CSynapse
 */
 
-echo $head . '
+echo $head . $style .'
 
 <body>
 
@@ -35,8 +35,8 @@ echo $head . '
                                             <input type="text" name="name" disabled="disabled" value='.$csynapse.' class="form-control" required>
                                             <br>
                                             <label>Choose Your Algorithms</label>
-                                            <div class="btn-group" data-toggle="buttons">
-                                            ' . $buttons . '
+                                            <div id="algorithms"></div>
+                                            '.$dropdown.'<a href="#" id="addRow"><i class="icon-plus-sign icon-white"></i> Add another algorithm</p></a>
                                         </div>
 
                                         </div>
@@ -47,7 +47,7 @@ echo $head . '
 
                                         
                                           
-                                        </form>
+                                        </form>'. $params . '
 
   
   
@@ -68,10 +68,6 @@ echo $head . '
 
     </div>
     <!-- /#wrapper -->
-    <script>
-    $("type = file").fileinput();
-
-    </script>
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -88,6 +84,14 @@ echo $head . '
 </body>
 
   <script>
+
+    $(document).ready(function () {
+
+     $(\'#addRow\').click(function () {
+        $(\'<div/>\', {\'class\' : \'extraPerson\', html: GetHtml()}).hide().appendTo(\'#algorithms\').slideDown(\'fast\');
+         
+        });
+    })
     
     $(\'form\').submit(function(e){
       if($(\'form\').find(\':checked\').length<1){
@@ -95,6 +99,29 @@ echo $head . '
         e.preventDefault()
       }
     })
+
+     $(document).on(\'click\', \'.panel-heading span.clickable\', function(e){
+    var $this = $(this);
+    if(!$this.hasClass(\'panel-collapsed\')) {
+        $this.closest(\'.panel\').find(\'.panel-body\').slideUp();
+        $this.addClass(\'panel-collapsed\');
+    $this.find(\'i\').removeClass(\'glyphicon-chevron-down\').addClass(\'glyphicon-chevron-up\');
+
+    } else {
+        $this.closest(\'.panel\').find(\'.panel-body\').slideDown();
+        $this.removeClass(\'panel-collapsed\');
+        $this.find(\'i\').removeClass(\'glyphicon-chevron-up\').addClass(\'glyphicon-chevron-down\');
+    }
+    })
+
+    function GetHtml()
+    {
+        var $algorithm = \'.\' + $(\'#algorithm option:selected\').val();
+        var $html = $($algorithm).clone();
+
+        return $html.html();    
+    }
+ 
   </script>
 
 </html>';
