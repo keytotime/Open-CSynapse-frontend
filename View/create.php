@@ -37,7 +37,7 @@ echo $head . $style . '
                                             <br>
                                             <label>Choose Your Algorithms</label>
                                             <div id="algorithms"></div>
-                                            '.$dropdown.'<a href="#" id="addRow"><i class="icon-plus-sign icon-white"></i> Add another algorithm</p></a>
+                                            '.$dropdown.'<a href="#" id="addRow"><i class="icon-plus-sign icon-white"></i> Add this algorithm</p></a>
 
                                         </div>
                                         <br>
