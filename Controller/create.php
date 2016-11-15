@@ -48,10 +48,10 @@ if(isset($_POST['name'])){
 
 	}
 
-	// create($_POST['name']);
+	create($_POST['name']);
 
 	$url = $api_url . "/data";
-	// make_api_post_file_request($url, $_POST, "upload", "upload");
+	make_api_post_file_request($url, $_POST, "upload", "upload");
 
 	$url = $api_url . "/test?name=" . $_POST['name'];
 
@@ -59,11 +59,11 @@ if(isset($_POST['name'])){
 		$algorithm = json_encode($algorithm);
 		$url = $url . "&algorithm=" . $algorithm;
 	}
-	// make_api_post_request($url);
+	make_api_post_request($url);
 
-	// header("Location: results.php?id=". $_POST['name']);
+	header("Location: results.php?id=". $_POST['name']);
 
-	var_dump($url);
+	// var_dump($url);
 
 }
 
