@@ -109,10 +109,10 @@ foreach($allobj as $algo){
 							</div>
 							<div class="panel-body" style="display: none"><input type="hidden" name="algorithm[]" value="' . $algo->{'algoId'} . '">';
 		foreach($algo->{'paramInfo'} as $param){
-			$params = $params .  $param->{'name'} . ': ';
+			$params = $params . '<label>' . $param->{'name'} . ':</label> ';
 			if($param->{'type'} == "set"){
 
-				$params = $params .  '<div class="form-group"> <select span="3">';
+				$params = $params .  '<div class="form-group"> <select id='. $param->{'name'} .'[] name="'.$param->{'name'}.'[]">';
 				foreach($param->{'values'} as $value){
 					$params = $params . '<option value="' . $value . '">' . $value . '</option>';
 				}
