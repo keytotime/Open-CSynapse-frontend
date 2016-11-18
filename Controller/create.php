@@ -81,6 +81,51 @@ $style = "<style>
 .panel-heading span {
 	margin-top: -20px;
 	font-size: 15px;
+}
+
+/* Tooltip container */
+.tip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.tip .tooltiptext::after {
+    content: \"\";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }";
 $dropdown = '<select id="algorithm">';
 
@@ -107,7 +152,7 @@ foreach($allobj as $algo){
 							</div>
 							<div class="panel-body" style="display: none"><input type="hidden" name="algorithm[]" value="' . $algo->{'algoId'} . '">';
 		foreach($algo->{'paramInfo'} as $param){
-			$params = $params . '<label>' . $param->{'name'} . ':</label> ';
+			$params = $params . '<div class="tip"><label>' . $param->{'name'} . ':</label><span class="tooltiptext">'. $param->{'description'} .'</span></div> ';
 			if($param->{'type'} == "set"){
 
 				$params = $params .  '<div class="form-group"> <select id='. $param->{'name'} .'[] name="'.$param->{'name'}.'[]">';
