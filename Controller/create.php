@@ -164,6 +164,9 @@ foreach($allobj as $algo){
 			if($param->{'type'} == "int" || $param->{'type'} == "float"){
 				
 				$params = $params . '<div class="form-group"> <input type="number"';
+				if($param->{'type'} == "float"){
+					$params = $params . ' step = "any"';
+				}
 				$params = $params . ' value = "' . $param->{'default'} . '"';
 				$params = $params . ' min = "' . $param->{'greater'} . '"';
 				if($param->{'lessOrEqual'} != 'none'){
