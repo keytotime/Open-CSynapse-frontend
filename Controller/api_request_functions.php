@@ -186,13 +186,13 @@ function make_api_post_file_request($url, $post_opts, $api_file_opt, $original_f
     {
         #echo "Checking ". $name."<br />";
         $check_match = preg_match("/.*?\.zip$/i", $name);
-        var_dump($check_match);
+        // var_dump($check_match);
         if ($check_match == 1)
         {
             $post_opts["zipped"] = "true";
         }
     }
-    var_dump($post_opts);
+    #var_dump($post_opts);
     curl_setopt_custom_postfields($ch, $post_opts);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
