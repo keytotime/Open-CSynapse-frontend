@@ -1,5 +1,20 @@
 <?php
 
+function set_session_id($cookie_list)
+{
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    foreach ($cookie_list as $cookie) 
+    {
+        preg_match('/^(?<domain>[\w\/\.]*)\s(?<flag>\w*)\s(?<path>[\w\/\.]*)\s(?<secure>\w*)\s(?<expiration>\d*)\s(?<name>[\w\.\/]*)\s(?<value>[\w\d\/\.]*)$/', $cookie, $matches);
+        if (strcmp($matches['name'], "beaker.session.id") == 0)
+        {
+            $_SESSION['id'] = $matches["value"];
+        }
+    }
+}
+
 function return_file($data, $filename)
 {
     $data = json_decode($data);
@@ -28,21 +43,20 @@ function make_api_post_request($url)
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    $cookie_text = $_SESSION['id'][0];
+    $cookie_text = $_SESSION['id'];
     $url = str_replace(" ", "%20", $url);
     $ch = curl_init($url);
-    $cookie_file = tempnam("/tmp", "user_cookie");
-    $cookie_file_d = fopen($cookie_file, "w") or die("Unable to open temporary cookie file!");
-    fwrite($cookie_file_d, $cookie_text);
-    fclose($cookie_file_d);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
+    curl_setopt($ch, CURLOPT_COOKIEFILE, "");
+    if ($cookie_text != NULL)
+    {
+        curl_setopt($ch, CURLOPT_COOKIE, "beaker.session.id=".$cookie_text);
+    }
     curl_setopt($ch, CURLOPT_POST, true);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
-    $_SESSION['id'] = $cookie_list;
+    set_session_id($cookie_list);
     curl_close($ch);
-    unlink($cookie_file);
     return $data;
 }
 
@@ -51,20 +65,15 @@ function make_api_get_request($url, $return_file = false, $filename="")
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    $cookie_text = $_SESSION['id'][0];
+    $cookie_text = $_SESSION['id'];
     $url = str_replace(" ", "%20", $url);
     $ch = curl_init($url);
-    $cookie_file = tempnam("/tmp", "user_cookie");
-    $cookie_file_d = fopen($cookie_file, "w") or die("Unable to open temporary cookie file!");
-    fwrite($cookie_file_d, $cookie_text);
-    fclose($cookie_file_d);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
+    curl_setopt($ch, CURLOPT_COOKIE, "beaker.session.id=".$cookie_text);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
-    $_SESSION['id'] = $cookie_list;
+    set_session_id($cookie_list);
     curl_close($ch);
-    unlink($cookie_file);
     if ($return_file)
     {
         return_file($data, $filename);
@@ -80,22 +89,16 @@ function make_api_post_array_request($url, $post_opts)
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    $cookie_text = $_SESSION['id'][0];
-    #$url = str_replace(" ", "%20", $url);
+    $cookie_text = $_SESSION['id'];
     $ch = curl_init($url);
-    $cookie_file = tempnam("/tmp", "user_cookie");
-    $cookie_file_d = fopen($cookie_file, "w") or die("Unable to open temporary cookie file!");
-    fwrite($cookie_file_d, $cookie_text);
-    fclose($cookie_file_d);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
+    curl_setopt($ch, CURLOPT_COOKIE, "beaker.session.id=".$cookie_text);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt_custom_postfields($ch, $post_opts);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
-    $_SESSION['id'] = $cookie_list;
+    set_session_id($cookie_list);
     curl_close($ch);
-    unlink($cookie_file);
     return $data;
 }
 
@@ -166,15 +169,11 @@ function make_api_post_file_request($url, $post_opts, $api_file_opt, $original_f
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    $cookie_text = $_SESSION['id'][0];
+    $cookie_text = $_SESSION['id'];
     #$url = str_replace(" ", "%20", $url);
     $ch = curl_init($url);
-    $cookie_file = tempnam("/tmp", "user_cookie");
-    $cookie_file_d = fopen($cookie_file, "w") or die("Unable to open temporary cookie file!");
-    fwrite($cookie_file_d, $cookie_text);
-    fclose($cookie_file_d);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
+    curl_setopt($ch, CURLOPT_COOKIE, "beaker.session.id=".$cookie_text);
     curl_setopt($ch, CURLOPT_POST, true);
     $post_opts[$api_file_opt] = [];
     $file_num = 0;
@@ -196,9 +195,8 @@ function make_api_post_file_request($url, $post_opts, $api_file_opt, $original_f
     curl_setopt_custom_postfields($ch, $post_opts);
     $data = curl_exec($ch);
     $cookie_list = curl_getinfo($ch, CURLINFO_COOKIELIST);
-    $_SESSION['id'] = $cookie_list;
+    set_session_id($cookie_list);
     curl_close($ch);
-    unlink($cookie_file);
     return $data;
 }
 
