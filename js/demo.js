@@ -1,7 +1,7 @@
 'use strict';
 
 // var baseUrl = 'http://localhost:8888/';
-var baseUrl = 'http://csynapse.com/api/';
+var baseUrl = 'https://csynapse.com/api/';
 var newPanel = ['<div class="panel panel-default draggable-image">',
     '<div class="panel-heading"></div>',
     '<div class="panel-body">',
