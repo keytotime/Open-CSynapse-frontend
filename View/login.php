@@ -48,10 +48,10 @@
                                     echo($message);
                                     ?>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="User Name" name="username" required autofocus>
+                                    <input type="text" class="form-control" placeholder="User Name" name="username" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Password" name="password" type="password" value="" required>
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <input type="submit" value="Login" class="btn btn-lg btn-success btn-block">
