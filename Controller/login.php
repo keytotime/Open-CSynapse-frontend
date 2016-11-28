@@ -5,8 +5,12 @@ require '../Controller/api_request_functions.php';
 
 session_start();
 
+$message = '';
+
 if (isset($_POST['username']) && isset($_POST['password'])){
-    login($_POST['username'],$_POST['password']);
+    if(!login($_POST['username'],$_POST['password'])){
+    	$message = '<font color= #ff0000>*Username/Password incorrect. Please try again.</font>';
+    }
 
 }
 

@@ -44,16 +44,14 @@
                     <div class="panel-body">
                         <form action="login.php" method="POST" enctype="multipart/form-data">
                             <fieldset>
+                                    <?php
+                                    echo($message);
+                                    ?>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="User Name" name="username" autofocus>
+                                    <input type="text" class="form-control" placeholder="User Name" name="username" required autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
+                                    <input type="text" class="form-control" placeholder="Password" name="password" type="password" value="" required>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <input type="submit" value="Login" class="btn btn-lg btn-success btn-block">
