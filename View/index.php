@@ -36,13 +36,6 @@ echo $head . '
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
@@ -58,13 +51,6 @@ echo $head . '
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
@@ -80,13 +66,6 @@ echo $head . '
                                     </div>
                                 </div>
                             </div>
-                            <a href="index.php">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Update</span>
-                                    <span class="pull-right"><i class="fa fa-refresh"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
                         </div>
                     </div>
 
@@ -124,7 +103,7 @@ echo $head . '
             <div class="col-lg-4 col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                            <i class="fa fa-bell fa-fw"></i> Classifications Panel
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -175,7 +154,7 @@ echo $head . '
                         //         </a>
                             '</div>
                             <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All</a>
+                            <a href="classifications.php" class="btn btn-default btn-block">View All</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>

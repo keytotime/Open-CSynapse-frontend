@@ -61,11 +61,11 @@ $nav = '<nav class="navbar navbar-default navbar-static-top" role="navigation" s
                     '</ul>
                     <!-- /.dropdown-messages -->
                 </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>'.
+                <!-- /.dropdown -->'.
+                // <li class="dropdown">
+                //     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                //         <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                //     </a>'
                     // <ul class="dropdown-menu dropdown-tasks">
                     //     <li>
                     //          <a href="#">
@@ -106,11 +106,11 @@ $nav = '<nav class="navbar navbar-default navbar-static-top" role="navigation" s
                     //     </li>
                     // </ul>
                     // <!-- /.dropdown-tasks -->
-                '</li>
-                <!-- /.dropdown -->
+                // </li>
+                '<!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-table fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">' . $_SESSION['notifications']
                     //     <li>
@@ -159,7 +159,7 @@ $nav = '<nav class="navbar navbar-default navbar-static-top" role="navigation" s
                     //     </li>
                     //     <li class="divider"></li>
                 .'<li>
-                    <a class="text-center" href="/index.php">
+                    <a class="text-center" href="classifications.php">
                         <strong>See All</strong>
                         <i class="fa fa-angle-right"></i>
                     </a>
@@ -218,7 +218,7 @@ $nav = '<nav class="navbar navbar-default navbar-static-top" role="navigation" s
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="llif.php"><i class="fa fa-table fa-fw"></i> Leaky Integrate and Fire</a>
+                            <a href="classifications.php"><i class="fa fa-table fa-fw"></i> Classifications</a>
                         </li>
                         <li>
                             <a href="about.php"><i class="fa fa-info fa-fw"></i> About CSynapse</a>

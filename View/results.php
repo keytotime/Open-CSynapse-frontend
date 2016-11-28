@@ -161,7 +161,7 @@ echo $head . '
                 responsive: true,
                 paging: false,
                 "bInfo": false,
-                "order": [[ 2, "asc" ]]
+                "order": [[ 1, "desc" ]]
         });
     });
     </script>
