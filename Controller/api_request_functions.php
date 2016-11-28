@@ -252,4 +252,47 @@ function logged_in(){
     return $loggedin;
 }
 
+function update(){
+    require '../Model/hidden/api.php';
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (isset($_SESSION['id'])){
+        $url = $api_url . "/getAllAvailableClassified";
+        $json = make_api_get_request($url);
+        $allobj = json_decode($json);
+        $allobj = $allobj->{'all_classified'};
+
+        $_SESSION['notifications'] = '';
+
+        foreach($allobj as $csynapse){
+            foreach($csynapse as $item){     
+                foreach($item as $Classified){
+                    $_SESSION['notifications'] .= '<li><a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=csv"><div>
+                        <i class="glyphicon glyphicon-ok"></i> ' . $Classified->{'datasetName'} . ' Completed
+                        <span class="pull-right text-muted small">Now</span>
+                        </div></a></li><li class="divider"></li>';
+                }        
+            }
+        }
+
+        $url = $api_url . "/csynapses";
+        $json = make_api_get_request($url);
+        $allobj = json_decode($json);
+
+        $_SESSION['active'] = '';
+
+        if(!empty($allobj->{'csynapses'})){
+            
+            foreach($allobj->{'csynapses'} as $name){
+                $_SESSION['active'] = $_SESSION['active'] . "<li><a href='/Controller/results.php?id=" . urlencode($name) . "'>" . $name . "</a></li>";
+            }
+        }
+    }
+}
+
+
+
+
 ?>

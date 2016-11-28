@@ -73,7 +73,7 @@ echo $head . '
                 <!-- /.row -->                
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            My CSynapses
+                            <i class="fa fa-bar-chart fa-fw"></i> My CSynapses
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

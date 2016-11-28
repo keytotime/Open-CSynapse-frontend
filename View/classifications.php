@@ -24,7 +24,7 @@ echo $head . '
             <div class="row">        
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        My Classifications
+                        <i class="fa fa-table fa-fw"></i> My Classifications
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">

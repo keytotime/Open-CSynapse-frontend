@@ -18,7 +18,6 @@ if(!logged_in()){
 
 $num_classified = 0;
 $table = '';
-$_SESSION['active'] = '';
 $position = 0;
 $username = json_decode(make_api_get_request($api_url."/getUsername"))->{'username'};
 
@@ -27,12 +26,10 @@ $json = make_api_get_request($url);
 $allobj = json_decode($json);
 
 $notification = '';
-$_SESSION['notifications'] = '';
 
 if(!empty($allobj->{'csynapses'})){
     
     foreach($allobj->{'csynapses'} as $name){
-        $_SESSION['active'] = $_SESSION['active'] . "<li><a href='/Controller/results.php?id=" . urlencode($name) . "'>" . $name . "</a></li>";
         $type = "Vector";
         $size = "X";
         $status = "Ready";
@@ -47,10 +44,7 @@ if(!empty($allobj->{'csynapses'})){
     }
 }
 
-$url = $api_url . "/getAllAvailableClassified";
-$json = make_api_get_request($url);
-$allobj = json_decode($json);
-$allobj = $allobj->{'all_classified'};
+
 
 // $notifications = array();
 
@@ -86,6 +80,11 @@ $allobj = $allobj->{'all_classified'};
 //     }
 // }
 
+$url = $api_url . "/getAllAvailableClassified";
+$json = make_api_get_request($url);
+$allobj = json_decode($json);
+$allobj = $allobj->{'all_classified'};
+
 foreach($allobj as $csynapse){
     foreach($csynapse as $item){     
         foreach($item as $Classified){
@@ -93,10 +92,6 @@ foreach($allobj as $csynapse){
             $notification .= '<a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=csv" class="list-group-item">
                 <i class="glyphicon glyphicon-ok"></i> Classification of '. $Classified->{'datasetName'} .' has completed. 
                 <span class="pull-right text-muted small"><em>Now</em></span></a>';
-            $_SESSION['notifications'] .= '<li><a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=csv"><div>
-                <i class="glyphicon glyphicon-ok"></i> ' . $Classified->{'datasetName'} . ' Completed
-                <span class="pull-right text-muted small">Now</span>
-                </div></a></li><li class="divider"></li>';
         }        
     }
 }
