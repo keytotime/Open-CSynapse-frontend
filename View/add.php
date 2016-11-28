@@ -43,7 +43,7 @@ echo $head . $style .'
                                         
                                         <br><br>
                                         <input type="hidden" name="redirect" value="index.php" />
-                                        <button type="submit" value="submit" class="btn btn-primary">Add Algorithms</button>
+                                        <button type="submit" value="submit" class="btn btn-primary disabled">Add Algorithms</button>
 
                                         
                                           
@@ -89,12 +89,13 @@ echo $head . $style .'
 
      $(\'#addRow\').click(function () {
         $(\'<div/>\', {\'class\' : \'extraPerson\', html: GetHtml()}).hide().appendTo(\'#algorithms\').slideDown(\'fast\');
+        $(\'.disabled\').removeClass(\'disabled\');
          
         });
     })
     
     $(\'form\').submit(function(e){
-      if($(\'form\').find(\':checked\').length<1){
+      if(($(\'.disabled\').length > 0) || $(\'form\').find(\':checked\').length<1){
         alert(\'Please select at least one Algorithm.\')
         e.preventDefault()
       }
