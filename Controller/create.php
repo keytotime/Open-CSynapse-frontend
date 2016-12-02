@@ -92,7 +92,7 @@ $style = "<style>
 /* Tooltip text */
 .tip .tooltiptext {
     visibility: hidden;
-    width: 120px;
+    width: 300px;
     background-color: #555;
     color: #fff;
     text-align: center;
@@ -109,17 +109,6 @@ $style = "<style>
     /* Fade in tooltip */
     opacity: 0;
     transition: opacity .2s;
-}
-
-.tip .tooltiptext::after {
-    content: \"\";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */

@@ -41,19 +41,21 @@ echo $head . $style . '
 
                                         </div>
                                         <br>
-                                        <label class="control-label">Select File</label>
+                                        <label class="control-label">Select File <div class="tip"><i class="fa fa-info-circle"></i><span class="tooltiptext">CSV files should be of type .csv with format "label,x,y,z\n". <br><hr>
+                                        Image data should be in folders named with the images\' tag, zipped.<br> </</p>
+                                        </span></div></label>
                                         <input type="file" id="upload" name="upload[]" class="file" data-show-upload="false" multiple required>
-                                        <p class="help-block">Files should be of type .csv with format "label,x,y,z\n". </p>
                                         
                                         <br><br>
                                         <input type="hidden" name="redirect" value="index.php" />
+
                                         <button type="submit" value="submit" class="btn btn-primary">Create CSynapse</button>
 
                                         
                                           
                                         </form>'. $params . '
 
-  
+                                    
   
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
