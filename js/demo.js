@@ -22,6 +22,16 @@ function stopSpinner() {
     $('#overlay').remove();
 }
 
+function deleteData() {
+    $.ajax({
+        url: baseUrl + 'demoDeleteTrainingData?name=faces',
+        type: 'POST',
+        success: function(data) {
+            location.reload();
+        }
+    });
+}
+
 function dataAddingForms() {
     var classifyForm = new FormData($('#classifyForm').get(0));
     var addForm = new FormData($('#addForm').get(0));
