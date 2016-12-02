@@ -208,7 +208,13 @@ function login($username,$password){
     }
     $url = $api_url . "/login?username=" . $username . "&password=" . $password;
     $json = make_api_post_request($url);
-    $_SESSION['user'] = $username;
+    $allobj = json_decode($json);
+    if($allobj->{'status'} != "error"){
+        $_SESSION['user'] = $username;
+        return true;
+    }
+    return false;
+
 }
 
 function register($username,$password){
@@ -271,7 +277,7 @@ function update(){
                 foreach($item as $Classified){
                     $_SESSION['notifications'] .= '<li><a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=csv"><div>
                         <i class="glyphicon glyphicon-ok"></i> ' . $Classified->{'datasetName'} . ' Completed
-                        <span class="pull-right text-muted small">Now</span>
+                        <span class="pull-right text-muted small">CSV</span>
                         </div></a></li><li class="divider"></li>';
                 }        
             }

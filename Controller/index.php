@@ -91,7 +91,7 @@ foreach($allobj as $csynapse){
             $num_classified += 1;
             $notification .= '<a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=csv" class="list-group-item">
                 <i class="glyphicon glyphicon-ok"></i> Classification of '. $Classified->{'datasetName'} .' has completed. 
-                <span class="pull-right text-muted small"><em>Now</em></span></a>';
+                <span class="pull-right text-muted small"><em>CSV</em></span></a>';
         }        
     }
 }
