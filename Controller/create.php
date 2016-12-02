@@ -32,21 +32,7 @@ if(isset($_POST['name'])){
 	}
 
 	
-	// var_dump($map);
-	$algojson = [];
-	
 
-	foreach($_POST['algorithm'] as $algo){
-		$params = [];
-		$alg = [];
-		$alg['algorithm'] = $algo;
-		foreach($map[$algo] as $param){
-			$params[$param] = array_shift($_POST[$param]);
-		}
-		$alg['params'] = $params;
-		array_push($algojson, $alg);
-
-	}
 
 	create($_POST['name']);
 
@@ -55,13 +41,9 @@ if(isset($_POST['name'])){
 
 	$url = $api_url . "/test?name=" . $_POST['name'];
 
-	foreach($algojson as $algorithm){
-		$algorithm = json_encode($algorithm);
-		$url = $url . "&algorithm=" . $algorithm;
-	}
-	make_api_post_request($url);
 
-	header("Location: results.php?id=". $_POST['name']);
+
+	header("Location: add.php?csynapse=". $_POST['name']);
 
 	// var_dump($url);
 

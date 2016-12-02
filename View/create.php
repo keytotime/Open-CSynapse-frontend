@@ -35,12 +35,8 @@ echo $head . $style . '
                                             <input type="text" name="name" class="form-control" required>
                                             <p class="help-block">Give your CSynapse a descriptive name.</p>
                                             <br>
-                                            <label>Choose Your Algorithms</label>
-                                            <div id="algorithms"></div>
-                                            '.$dropdown.'<a href="#" id="addRow"><i class="icon-plus-sign icon-white"></i> Add this algorithm</p></a>
 
                                         </div>
-                                        <br>
                                         <label class="control-label">Select File <div class="tip"><i class="fa fa-info-circle"></i><span class="tooltiptext">CSV files should be of type .csv with format "label,x,y,z\n". <br><hr>
                                         Image data should be in folders named with the images\' tag, zipped.<br> </</p>
                                         </span></div></label>
@@ -101,13 +97,6 @@ echo $head . $style . '
         $(\'<div/>\', {\'class\' : \'extraPerson\', html: GetHtml()}).hide().appendTo(\'#algorithms\').slideDown(\'fast\');
          
         });
-    })
-    
-    $(\'form\').submit(function(e){
-      if($(\'form\').find(\':checked\').length<1){
-        alert(\'Please select at least one Algorithm.\')
-        e.preventDefault()
-      }
     })
 
      $(document).on(\'click\', \'.panel-heading span.clickable\', function(e){
