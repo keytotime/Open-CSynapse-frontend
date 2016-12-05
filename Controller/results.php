@@ -154,6 +154,7 @@ if(strcmp($regJson->{'status'},'error') !== 0) {
     $regList = $regJson->{'regressionData'};
     $regressionData = json_encode($regList);
 
+
     $count = 10;
     foreach($regList as $regData){
         $result = '<tr><td>' . $regData->{'h1'}  . ' and ' . $regData->{'h2'} . '</td><td>'.round($regData->{'r'}, 2) . '</td><td>' . round($regData->{'rSquared'},2) . '</td><td>'.round($regData->{'p'},2).'</td></tr>';
