@@ -75,7 +75,21 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Classify</div>
+                            <div class="panel-heading">
+                            Classify
+                            <select id="algoSelect">
+                            <option value="passiveAggressive" selected>Passive Agressive</option>
+                            <option value="svm">Support Vector Machine</option>
+                            <option value="guassNB">Gaussian Naive Bayes</option>
+                            <option value="randomForest">Random Forest</option>
+                            <option value="knearest">Knearest Neighbors</option>
+                            <option value="perceptron">Perceptron</option>
+                            <option value="adaBoost">AdaBoost</option>
+                            <option value="sgd">Stochastic Gradient Descent</option>
+                            <option value="nearestCentroid">Nearest Centroid</option>
+                            <option value="decisionTree">Decision Tree</option>
+                            </select>
+                            </div>
                             <div id="classify-box" class="panel-body middle-panel"></div>
                         </div>
                     </div>

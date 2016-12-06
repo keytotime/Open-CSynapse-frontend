@@ -1,7 +1,7 @@
 'use strict';
 
-// var baseUrl = 'http://localhost:8888/';
-var baseUrl = 'https://csynapse.com/api/';
+var baseUrl = 'http://localhost:8888/';
+// var baseUrl = 'https://csynapse.com/api/';
 var newPanel = ['<div class="panel panel-default draggable-image">',
     '<div class="panel-heading"></div>',
     '<div class="panel-body">',
@@ -91,7 +91,9 @@ $(function() {
         fd.append('imageNum', src[src.length - 1]);
         fd.append('name', 'faces');
 
-        $.getJSON(classifyImageUrl + '?name=faces&index=' + src[src.length - 1], function(data) {
+        // Get algovalue
+        var algoName = $('#algoSelect').val();
+        $.getJSON(classifyImageUrl + '?name=faces&index=' + src[src.length - 1] + '&algoName='+algoName, function(data) {
             stopSpinner();
             $('.result').text(data.result);
             $('.result').fadeIn(1000, function() {
