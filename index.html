@@ -9,10 +9,19 @@
 		<title>CSynapse</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- Bootstrap Core CSS -->
+    	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="css/agency.min.css" rel="stylesheet">
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<style>
+		section {
+			padding-top: 40px;
+		}
+		</style>
+		
 	</head>
 	<body class="landing">
 
@@ -29,9 +38,9 @@
 									<div id="menu">
 										<ul>
 											<li><a class="page-scroll" href="#banner">Home</a></li>
-											<li><a class="page-scroll" href="#one">About</a></li>
-											<li><a class="page-scroll" href="#two">Tutorial</a></li>
-											<!--<li><a class="page-scroll" href="#three">Features</a></li>-->
+											<li><a class="page-scroll" href="#about">About</a></li>
+											<li><a class="page-scroll" href="#tutorial">Tutorial</a></li>
+											<li><a class="page-scroll" href="#team">Our Team</a></li>
 											<li><a href="Controller/index.php">Launch App</a></li>
 										</ul>
 									</div>
@@ -50,15 +59,23 @@
 								<li><a href="Controller/index.php" class="button special">Launch App</a></li>
 							</ul>
 						</div>
-						<a href="#one" class="more scrolly">Learn More</a>
+						<a href="#about" class="more scrolly">Learn More</a>
 					</section>
 
 				<!-- One -->
-					<section id="one" class="wrapper style1 special">
+					<section id="about" class="wrapper style1 special">
 						<div class="inner">
 							<header class="major">
 								<h2>What is machine learning?<br /></h2>
 								<p>Machine learning refers to a type of data analysis that uses algorithms that learn from data. It is a type of artificial intelligence (AI) that provides systems with the ability to learn without being explicitly programmed. This enables computers to find data within data without human intervention. </p>
+								<h2>What does CSynapse provide?<br /></h2>
+								<p>CSynapse is a service designed to help you answer common questions associated with Machine Learning such as:</p>
+								<h4>Is my data learnable?<br /></h4>
+								<p>CSynapse allows you to quickly see how well your data can be learned by popular machine learning algorithms. Create a CSynapse, upload your data, pick your algorithms and we’ll take care of the rest.</p>
+								<h4>Which algorithm fits my data?<br /></h4>
+								<p>CSynapse allows you to compare how well different algorithms can learn your data. A mean cross validation score and time to run for each algorithm gives you the information you need to find the best algorithm for you.</p>
+								<h4>Prediction?<br /></h4>
+								<p>After you’ve found and trained the right algorithm for the job, upload your untagged data and we’ll provide predictions for you.</p>
 								<h2>How can I get started?<br /></h2>
 								<p>With CSynapse.com of course! Check out the tutorial below for a more detailed overview on how.</p>
 							</header>
@@ -66,7 +83,12 @@
 					</section>
 
 				<!-- Two -->
-					<section id="two" class="wrapper alt style2">
+					<section id="tutorial" class="wrapper alt style2">
+			            <section class="row">
+			                <div class="col-lg-12 text-center">
+			                    <h2 class="section-heading">CSynapse Tutorial</h2><br>
+			                </div>
+			            </section>
 						<section class="spotlight">
 							<div class="image"><img src="images/ss01.png" alt="CSynapse creation page." /></div><div class="content">
 								<h2>Create a CSynapse</h2>
@@ -141,6 +163,104 @@
 							</ul>
 						</div>
 					</section> -->
+					<!-- About us -->
+					  <!-- Team Section -->
+					    <section id="team" class="wrapper style3 special">
+					        <div class="container">
+					            <div class="row">
+					                <div class="col-lg-12 text-center">
+					                    <h2 class="section-heading">Our Amazing Team</h2>
+					                    <h3 class="section-subheading text-muted">University of Utah CSynapse senior project team.</h3>
+					                </div>
+					            </div>
+					            <div class="row">
+					                <div class="col-sm-4">
+					                    <div class="team-member">
+					                        <img src="http://static.evzmonden.ro/uploads/2015/04/Nicolas.jpg" class="img-responsive img-circle" alt="">
+					                        <h4>Nick Thomas</h4>
+					                        <p class="text-muted">Frontend / UI</p>
+					                        <ul class="list-inline">
+					                            <li><a href="https://twitter.com/NicholasThomas"><i class="fa fa-twitter"></i></a>
+					                            </li>
+					                            <li><a href="https://www.facebook.com/nick.thomas.9699523"><i class="fa fa-facebook"></i></a>
+					                            </li>
+					                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+					                            </li>
+					                        </ul>
+					                    </div>
+					                </div>
+					                <div class="col-sm-4">
+					                    <div class="team-member">
+					                        <img src="http://cdn-pictures.namez.com/pictures/6173/cropped/NicolasCage.jpg" class="img-responsive img-circle" alt="">
+					                        <h4>Sam Callister</h4>
+					                        <p class="text-muted">Machine Learning</p>
+					                        <ul class="list-inline">
+					                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+					                            </li>
+					                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+					                            </li>
+					                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+					                            </li>
+					                        </ul>
+					                    </div>
+					                </div>
+					                <div class="col-sm-4">
+					                    <div class="team-member">
+					                        <img src="http://pmcdeadline2.files.wordpress.com/2012/05/cage__120508180004.jpg" class="img-responsive img-circle" alt="">
+					                        <h4>Daniel Kenner</h4>
+					                        <p class="text-muted">Architechture</p>
+					                        <ul class="list-inline">
+					                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+					                            </li>
+					                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+					                            </li>
+					                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+					                            </li>
+					                        </ul>
+					                    </div>
+					                </div>
+					                <div class="col-sm-2">
+					                </div>
+					                 <div class="col-sm-4">
+					                    <div class="team-member">
+					                        <img src="https://s-media-cache-ak0.pinimg.com/236x/93/0f/4e/930f4e909d814c116549a72401c1d411.jpg" class="img-responsive img-circle" alt="">
+					                        <h4>Abhiram Chava</h4>
+					                        <p class="text-muted">Neural Networks</p>
+					                        <ul class="list-inline">
+					                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+					                            </li>
+					                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+					                            </li>
+					                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+					                            </li>
+					                        </ul>
+					                    </div>
+					                </div>
+					                <div class="col-sm-4">
+					                    <div class="team-member">
+					                        <img src="https://s-media-cache-ak0.pinimg.com/236x/96/77/bf/9677bf5c0bb5c08fa04f1d4f37405426.jpg" class="img-responsive img-circle" alt="">
+					                        <h4>Andrew Stoddard</h4>
+					                        <p class="text-muted">Data Visualization</p>
+					                        <ul class="list-inline">
+					                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+					                            </li>
+					                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+					                            </li>
+					                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+					                            </li>
+					                        </ul>
+					                    </div>
+					                </div>
+					            </div>
+					            <div class="row">
+					                <div class="col-lg-8 col-lg-offset-2 text-center">
+					                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+					                </div>
+					            </div>
+					        </div>
+					    </section>
+
+
 
 				<!-- CTA -->
 					<section id="cta" class="wrapper style4">
@@ -173,6 +293,7 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+
 
 	</body>
 </html>

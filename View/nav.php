@@ -220,7 +220,7 @@ $nav = '<nav class="navbar navbar-default navbar-static-top" role="navigation" s
                             <a href="classifications.php"><i class="fa fa-table fa-fw"></i> Classifications</a>
                         </li>
                         <li>
-                            <a href="about.php"><i class="fa fa-info fa-fw"></i> About CSynapse</a>
+                            <a href="../index.html#about"><i class="fa fa-info fa-fw"></i> About CSynapse</a>
                         </li>
                     </ul>
                 </div>
