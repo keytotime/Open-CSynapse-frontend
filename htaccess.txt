@@ -1,8 +1,2 @@
-//Rewrite to www
-Options +FollowSymLinks
-RewriteEngine on
-RewriteCond %{HTTP_HOST} ^csynapse.com[nc]
-RewriteRule ^(.*)$ http://www.csynapse.com/$1 [r=301,nc]
-
 //301 Redirect Old File
-Redirect 301 /about /index.html#team
+Redirect 301 about index.html#team
