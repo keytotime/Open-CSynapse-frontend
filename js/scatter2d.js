@@ -112,8 +112,6 @@ $(function() {
         // Build selector menus if header points exist
         if (headerPoints !== '' && labels != '' && regressionData != '') {
 
-            console.log(regressionData);
-
             function addToLookup(d, keyOne, keyTwo, data) {
                 if (d.hasOwnProperty(keyOne)) {
                     d[keyOne][keyTwo] = data;

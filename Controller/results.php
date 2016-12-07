@@ -137,10 +137,16 @@ $regressionData = json_encode('');
 $regressionList = '';
 if(strcmp($regJson->{'status'},'error') !== 0) {
 
+    $regList = $regJson->{'regressionData'};
+
+    $numberReg = count($regList);
+
+    if($numberReg > 10){
+        $numberReg = 10;
+    }
     $regressionList = '<div class="col-lg-12">
                             <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    10 Strongest Correlations
+                                <div class="panel-heading">' . $numberReg . ' Strongest Correlations
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body"><table width="100%" class="table table-striped table-bordered table-hover" id="datatable"><tr><th>Correlation</th><th>R</th><th>R-Squared</th><th>P</th></tr>';
@@ -151,7 +157,7 @@ if(strcmp($regJson->{'status'},'error') !== 0) {
                         <!-- /.panel -->
                     </div>';
 
-    $regList = $regJson->{'regressionData'};
+    
     $regressionData = json_encode($regList);
 
 
