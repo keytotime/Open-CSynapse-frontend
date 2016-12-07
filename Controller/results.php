@@ -76,7 +76,7 @@ if(!strpos($json,"Error: 500 Internal Server Error")){
 $url = $api_url . "/testResults?name=" . $csynapse;
 $json = make_api_get_request($url);
 $allobj = json_decode($json);
-
+// var_dump($allobj);
 $accuracydata = '[{';
 $speeddata = '[{';
 $datatable = '';
@@ -84,6 +84,7 @@ $processing = false;
 if(!empty($allobj->{'testResults'})){
     
     $allobj = $allobj->{'testResults'};
+    // var_dump($allobj);
     foreach($allobj as $algo){
         $datatable = $datatable . "<tr id='".$algo->{"id"}."_row'>";
         if (strcmp($algo->{"status"}, "complete") == 0) {
@@ -97,7 +98,7 @@ if(!empty($allobj->{'testResults'})){
         }
         else
         {
-            $datatable = $datatable . "<td><a href='classify.php?name=" . urlencode($csynapse) . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td><span id='".$algo->{"id"}."_accuracy'>--</span></td><td><span id='".$algo->{"id"}."_time'>ERROR</span></td>";
+            $datatable = $datatable . "<td><a href='classify.php?name=" . urlencode($csynapse) . "&algorithm=" . $algo->{"id"} ."'>" .  $algo->{"description"} . "</a></td><td><span id='".$algo->{"id"}."_accuracy'>--</span></td><td><span id='".$algo->{"id"}."_time'><a href='algorithm_error.php?id=".$csynapse."&algo=".$algo->{"id"}."'>ERROR</a></span></td>";
         }
         $datatable = $datatable . "</tr>";
 
