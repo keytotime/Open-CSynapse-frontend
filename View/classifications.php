@@ -34,7 +34,7 @@ echo $head . '
                                     <tr>
                                         <th>Name</th>
                                         <th>CSynapse</th>
-                                        <!--<th>Algorithm</th>-->
+                                        <th>View</th>
                                         <th>Download</th>
                                         <!--<th>Delete</th>-->
                                     </tr>

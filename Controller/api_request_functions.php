@@ -275,12 +275,19 @@ function update(){
         foreach($allobj as $csynapse){
             foreach($csynapse as $item){     
                 foreach($item as $Classified){
-                    $_SESSION['notifications'] .= '<li><a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=csv"><div>
+                    $_SESSION['notifications'] .= '<li><a href="classified.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '"><div>
                         <i class="glyphicon glyphicon-ok"></i> ' . $Classified->{'datasetName'} . ' Completed
-                        <span class="pull-right text-muted small">CSV</span>
+                        <span class="pull-right text-muted small">View</span>
                         </div></a></li><li class="divider"></li>';
                 }        
             }
+        }
+
+        if($_SESSION['notifications'] == ''){
+            $_SESSION['notifications'] .= '<li><a href="#"><div>
+                        <i class="glyphicon glyphicon-info-sign"></i>  No Classifications Yet
+                        <span class="pull-right text-muted small"></span>
+                        </div></a></li><li class="divider"></li>';
         }
 
         $url = $api_url . "/csynapses";

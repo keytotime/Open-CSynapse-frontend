@@ -27,13 +27,13 @@ foreach($allobj as $csynapse){
     foreach($csynapse as $csynapsename => $item){     
         foreach($item as $Classified){
             $name = $Classified->{'datasetName'};
-            $algorithm = "SVM";
+            $view = '<a href="classified.php?id=' . $Classified->{'mongoId'} . '&name=' . $name . '"><i class="fa fa-table"></i></a>';
             $download = '<a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $name . '&ext=csv"><i class="fa fa-file-excel-o"></i></a>&nbsp;&nbsp;&nbsp;<a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $name . '&ext=txt"><i class="fa fa-file-text-o"></i></a>';
             $delete = '<a href="delete.php?id="###"><i class="fa fa-trash"></i></a>';
             $table = $table . "<tr>
                         <td>" . $name . "</td>
                         <td>" . $csynapsename . "</td>
-                        <!--<td>" . $algorithm . "</td>-->
+                        <td>" . $view . "</td>
                         <td>" . $download . "</td>
                         <!--<td>" . $delete . "</td>-->
                         </tr>";

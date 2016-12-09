@@ -25,7 +25,7 @@ $url = $api_url . "/csynapses";
 $json = make_api_get_request($url);
 $allobj = json_decode($json);
 
-$notification = '';
+
 
 if(!empty($allobj->{'csynapses'})){
     
@@ -85,17 +85,24 @@ $json = make_api_get_request($url);
 $allobj = json_decode($json);
 $allobj = $allobj->{'all_classified'};
 
+$notification = '';
+
 foreach($allobj as $csynapse){
     foreach($csynapse as $item){     
         foreach($item as $Classified){
             $num_classified += 1;
-            $notification .= '<a href="download.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '&ext=csv" class="list-group-item">
+            $notification .= '<a href="classified.php?id=' . $Classified->{'mongoId'} . '&name=' . $Classified->{'datasetName'} . '" class="list-group-item">
                 <i class="glyphicon glyphicon-ok"></i> Classification of '. $Classified->{'datasetName'} .' has completed. 
-                <span class="pull-right text-muted small"><em>CSV</em></span></a>';
+                <span class="pull-right text-muted small"><em>View</em></span></a>';
         }        
     }
 }
 
+if($notification == ''){
+    $notification = '
+                <i class="glyphicon glyphicon-info-sign"></i> You don\'t have any classifications yet. 
+                <span class="pull-right text-muted small"></span></a>';
+}
 
 require '../View/head.php';
 require '../View/nav.php';
