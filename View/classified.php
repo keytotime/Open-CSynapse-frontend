@@ -46,10 +46,7 @@ echo $head . '
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="classifications">
-                                <thead>
-                                    '.$table_header.'
-                                </thead>
-                                <tbody>'.$table.'</tbody>
+                                '.$table.'
                             </table>
 
                         </div>
@@ -63,26 +60,24 @@ echo $head . '
     </div>
     <!-- /#wrapper -->
 
-
-
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-        <!-- Tables  -->
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jqc-1.12.4/dt-1.10.13/datatables.min.js"></script>
-
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    
+    <!-- DataTables JavaScript -->
+    <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="../bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
     
-
-
-
 
     <script>
         $(document).ready(function() {
@@ -92,10 +87,6 @@ echo $head . '
         } );
     </script>
 
-
-
-
-   
 
 
 </body>

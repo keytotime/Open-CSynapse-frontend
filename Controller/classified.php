@@ -23,34 +23,40 @@ $json = make_api_get_request($url);
 $allobj = json_decode($json);
 $allobj = $allobj->{'classified_data'};
 
-$table = '';
+$table = '<thead>';
 
 $columns=0;
-
 $lines = explode("\n", $allobj);
-
-
+$head = true;
 
 foreach ($lines as $line){
 
     $items = explode(",", $line);
-    if ( count($items) > 1){
+    if ( count($items) > 1 ){
         $columns = count($items);
         $table = $table . "<tr>";
-        foreach ($items as $item){
-            $table = $table . "<td>" . $item . "</td>";
+        if ( $head ){
+            foreach ($items as $item){
+                $table = $table . "<th>" . $item . "</th>";
+            }
+            $table = $table . '</thead><tbody>';
+        }
+        else {
+            foreach ($items as $item){
+                
+                $table = $table . "<td>" . $item . "</td>";
+
+            }
+
         }
         $table = $table . "</tr>";
+        
     }
+    $head = false;
 }
 
-$table_header = $table_header . '<tr><th>Classification</th>';
+$table = $table . '</tbody>';
 
-for ($i = 1; $i < $columns; $i++){
-    $table_header = $table_header . "<th>Feature" . $i . "</th>";
-}
-
-$table_header = $table_header . '</tr>';
 
 require '../View/head.php';
 require '../View/nav.php';

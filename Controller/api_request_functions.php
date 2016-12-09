@@ -284,7 +284,7 @@ function update(){
         }
 
         if($_SESSION['notifications'] == ''){
-            $_SESSION['notifications'] .= '<li><a href="#"><div>
+            $_SESSION['notifications'] = '<li><a href="#"><div>
                         <i class="glyphicon glyphicon-info-sign"></i>  No Classifications Yet
                         <span class="pull-right text-muted small"></span>
                         </div></a></li><li class="divider"></li>';
